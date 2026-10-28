@@ -163,7 +163,7 @@ function montarQueries(schema, opcoes = {}) {
         // FLU_ID 8/9 estacionam tipologias fora de tratamento numa fase própria de "espera").
         // Não é específica de nenhuma instância — qualquer fase de qualquer fluxo pode ser
         // consultada assim, o front decide onde usar.
-        // B11 (api_noir.md): paginada — $1 flu_id, $2 fas_id, $3 limite, $4 offset
+        // B11: paginada — $1 flu_id, $2 fas_id, $3 limite, $4 offset
         pastasPorLote: `
             SELECT l.lot_nome AS "Lote", count(*)::int AS "Pastas", coalesce(sum(p.pas_quant_img), 0)::int AS "Imagens"
               FROM ${t('tbl_pasta')} p

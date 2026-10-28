@@ -1,4 +1,4 @@
-// /api/monitoramento/* (api_noir.md B10) — lista, teste manual e intervalo do
+// /api/monitoramento/* — lista, teste manual e intervalo do
 // verificador nativo de APIs. Rota global do painel (não pertence a um
 // projeto/instância).
 const express = require('express');

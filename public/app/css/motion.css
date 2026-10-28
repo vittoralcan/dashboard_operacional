@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MOVIMENTO — catálogo de animações (design_system.md §5) e movimento reduzido
+   MOVIMENTO — catálogo de animações e movimento reduzido
    ========================================================================== */
 @keyframes rot { to { transform: rotate(360deg); } }
 @keyframes ping { 0% { transform: scale(1); opacity: .7; } 80%, 100% { transform: scale(2.6); opacity: 0; } }

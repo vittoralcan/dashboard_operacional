@@ -5,7 +5,7 @@ const fluxo = (/** @type {string} */ c, /** @type {string} */ titulo, /** @type 
 });
 
 /**
- * Tabela de rotas (frontend_spec.md §5). Cada tela é carregada sob demanda (`import()`).
+ * Tabela de rotas. Cada tela é carregada sob demanda (`import()`).
  * A primeira rota que casa vence. Todas as telas do plano estão migradas; rota desconhecida cai na 404.
  */
 /** @type {import('./core/router.js').Rota[]} */

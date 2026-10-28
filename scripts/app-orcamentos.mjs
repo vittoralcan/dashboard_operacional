@@ -1,4 +1,4 @@
-// Mede os orçamentos de desempenho do front novo (frontend_spec.md §11, RNB-015) — fonte única do CI e do relatório.
+// Mede os orçamentos de desempenho do front novo (RNB-015) — fonte única do CI e do relatório.
 //   node scripts/app-orcamentos.mjs          → tabela com tamanho, limite e folga de cada item
 //   node scripts/app-orcamentos.mjs --json   → o mesmo em JSON (para anexar ao PR)
 // Os testes (tests/app/orcamentos.test.js) importam `medir()`; o que estoura reprova o CI.

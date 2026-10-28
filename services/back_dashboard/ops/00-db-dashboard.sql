@@ -113,7 +113,7 @@ RESET ROLE;
 --     ('Lumen', 'Lumen — Indexação de Documentos', 'https://lumen.exemplo/api/health', 1);
 --   RESET ROLE;
 
--- Retenção (RN-012/backend_spec.md §3.1) — rodar via cron/systemd timer diário,
+-- Retenção (RN-012) — rodar via cron/systemd timer diário,
 -- não implementado nesta leva (sem job de retenção ainda):
 --   DELETE FROM painel.notificacao WHERE criado_em < now() - interval '30 days';
 --   DELETE FROM painel.auditoria   WHERE em        < now() - interval '180 days';

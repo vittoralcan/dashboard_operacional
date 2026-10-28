@@ -19,7 +19,7 @@ const MENSAGENS_PREFERENCIA = {
     macroIntervaloSeg: `Preferência inválida: macroIntervaloSeg deve ser ${MACRO_INTERVALOS_VALIDOS.join(', ')}.`,
 };
 
-// Chaves desconhecidas são ignoradas de propósito (api_noir.md A4) — um
+// Chaves desconhecidas são ignoradas de propósito — um
 // frontend mais novo que o backend não quebra a chamada por mandar uma
 // preferência que este backend ainda não conhece.
 function validarPatchPreferencias(corpo) {
@@ -33,7 +33,7 @@ function validarPatchPreferencias(corpo) {
     return { patch };
 }
 
-// Formato de resposta de A2/A3 (api_noir.md) — nunca inclui senha_hash;
+// Formato de resposta de A2/A3 — nunca inclui senha_hash;
 // datas em ISO 8601 (mesmo padrão já usado em todo o painel, ver
 // back_dashboard/src/core/sincronizacao.js).
 function paraRespostaPerfil(perfil) {

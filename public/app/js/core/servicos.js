@@ -3,7 +3,7 @@ import { instanteDe } from './format.js';
 import { fluxoDoCatalogo } from './gargalos.js';
 
 /**
- * Normalização das respostas do `back_dashboard` de atividades e notificações (api_noir.md B8/B9) e a resolução segura do destino
+ * Normalização das respostas do `back_dashboard` de atividades e notificações e a resolução segura do destino
  * de uma notificação. (Metas e gargalos têm módulos próprios: `metas.js`, `gargalos.js`.) Funções puras: o que o servidor não manda vira
  * `null`/vazio (nunca um valor inventado) e rotas de destino vindas do servidor SÓ viram navegação depois de conferidas contra o
  * catálogo e a tabela de rotas.

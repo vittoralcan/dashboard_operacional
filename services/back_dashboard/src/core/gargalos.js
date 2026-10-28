@@ -1,4 +1,4 @@
-// GET /api/gargalos (api_noir.md B5) — agregado de todas as instâncias com
+// GET /api/gargalos — agregado de todas as instâncias com
 // gargalo, pra um cartão "Gargalos agora" na tela de seleção/hub. Cada
 // instância é independente (Promise.allSettled, RA-015): uma falhando não
 // derruba as demais, só fica de fora do resultado.

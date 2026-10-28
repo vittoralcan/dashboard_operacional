@@ -1,6 +1,6 @@
 import { test, expect } from './fixtures.mjs';
 
-/** CSP e terceiros (RNB-014, frontend_spec §10): o servidor de teste aplica a política do .htaccess em modo BLOQUEIO. */
+/** CSP e terceiros (RNB-014): o servidor de teste aplica a política do .htaccess em modo BLOQUEIO. */
 
 test('a casca e a seleção de projetos carregam sem nenhuma violação de CSP (política do .htaccess em bloqueio)', async ({ page, abrir }) => {
   await abrir('#/projetos');

@@ -5,8 +5,7 @@ import { ESTADO } from './store.js';
 
 /**
  * Roteador por hash (`#/rota`) — funciona em hospedagem estática e preserva o botão Voltar.
- * Contrato de uma tela: `export async function montar(view, ctx)` → `{ destruir() }`
- * (frontend_spec.md §4–5). O roteador cuida de abortar a tela anterior, fechar camadas,
+ * Contrato de uma tela: `export async function montar(view, ctx)` → `{ destruir() }`. O roteador cuida de abortar a tela anterior, fechar camadas,
  * título, skeleton e corrida entre navegações.
  *
  * @typedef {'auth'|'shell'|'macro'|'tablet'} Camada

@@ -5,7 +5,7 @@
 const dns = require('dns').promises;
 const net = require('net');
 
-// Defesa contra SSRF (backend_spec.md §9): mesmo a URL sendo só gerenciada por
+// Defesa contra SSRF: mesmo a URL sendo só gerenciada por
 // admin/seed (nunca por entrada de usuário comum — não há endpoint de escrita
 // pra monitor_api.url), confere a resolução do host antes de buscar, pra um
 // cadastro errado/comprometido não virar uma sonda contra a própria rede da VM.

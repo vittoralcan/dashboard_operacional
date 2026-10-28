@@ -2,7 +2,7 @@ import AxeBuilder from '@axe-core/playwright';
 import { test, expect } from './fixtures.mjs';
 
 /**
- * Acessibilidade (frontend_spec §12.3, migration_plan §5): axe-core em TODAS as telas, nos DOIS temas.
+ * Acessibilidade: axe-core em TODAS as telas, nos DOIS temas.
  * Reprova com qualquer violação grave ou crítica (WCAG 2.0/2.1 A e AA + boas práticas); as leves/moderadas ficam como anotação.
  * Movimento reduzido ligado: as entradas animadas não deixam elementos semitransparentes durante a medição de contraste.
  */

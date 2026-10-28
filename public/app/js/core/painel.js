@@ -2,9 +2,9 @@
 import { miniIndicadores } from './fluxo-prod.js';
 
 /**
- * Lógica pura da seleção de projetos, dos hubs e dos números "de hoje" (frontend_screens.md §5–7).
+ * Lógica pura da seleção de projetos, dos hubs e dos números "de hoje".
  * Enquanto `GET /painel/resumo` (recurso `painel.resumo`) não existe, o front monta o MESMO formato interno chamando as
- * rotas de cada módulo (api_noir.md B6): quando o endpoint chegar, troca-se só a camada de dados — estas funções ficam.
+ * rotas de cada módulo: quando o endpoint chegar, troca-se só a camada de dados — estas funções ficam.
  *
  * Nada aqui inventa valor: dado ausente é `null` (a tela mostra "—"), nunca 0.
  *
@@ -83,7 +83,7 @@ export function resumoDoPainel(id, d) {
 
 /**
  * KPI do cartão de projeto: imagens e pastas finalizadas no mês (soma das instâncias) + série de 7 dias + variação das IMAGENS
- * (ΣA − ΣB) / ΣB (api_noir.md B6). `parcial` avisa que alguma instância não respondeu — o total não pode parecer completo.
+ * (ΣA − ΣB) / ΣB. `parcial` avisa que alguma instância não respondeu — o total não pode parecer completo.
  * A variação só existe se TODAS as instâncias que contam trouxeram o mês anterior (senão compararia coisas diferentes).
  * @param {(ResumoInstancia|null)[]} resumos
  */
@@ -135,7 +135,7 @@ export function seloMonitoramento(a) {
   return fora > 0 ? { cls: 'err pulse', texto: `${fora} fora do ar` } : { cls: 'ok', texto: 'Ativo' };
 }
 
-/** Unidade do KPI de cada módulo do BOREAL (frontend_screens.md §6). */
+/** Unidade do KPI de cada módulo do BOREAL. */
 export const UNIDADE_MODULO = /** @type {Record<string, string>} */ ({
   higienizacao: 'caixas finalizadas no mês',
   digitalizacao: 'pastas finalizadas no mês',

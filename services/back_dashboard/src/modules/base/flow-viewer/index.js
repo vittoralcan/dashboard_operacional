@@ -18,7 +18,7 @@ const { registrarAuditoria } = require('../../../core/auditoria');
 
 const DATA_ISO = /^\d{4}-\d{2}-\d{2}$/;
 const UM_DIA_MS = 24 * 60 * 60 * 1000;
-// B11 (api_noir.md): 92 dias — mais estrito que o teto de 366 que o BE-04
+// B11: 92 dias — mais estrito que o teto de 366 que o BE-04
 // original (docs/arquitetura/seguranca.md) tinha proposto como primeira defesa;
 // o contrato do Noir Bento fecha num limite menor, e 92 ⊂ 366 não quebra
 // nenhum uso legítimo de hoje (relatórios de período maior já não existiam).
@@ -127,7 +127,7 @@ function criarFlowViewer(configBruto, { db, instanceId, dbPainel, projectId }) {
 
     router.get('/gargalos', rota('Erro ao calcular gargalo', rotaCacheavel(`gargalos:${instanceId}`, buscarGargaloAtual)));
 
-    // B11 (api_noir.md) — paginada: `?limite&offset`, total real em X-Total-Count
+    // B11 — paginada: `?limite&offset`, total real em X-Total-Count
     // (cabeçalho exposto via CORS, ver BD-12 em app.js); o corpo continua sendo o
     // array de sempre (compatibilidade com quem ainda não lê o cabeçalho).
     router.get('/fase/:id/pastas', rota('Erro ao listar pastas', async (req, res) => {
@@ -158,7 +158,7 @@ function criarFlowViewer(configBruto, { db, instanceId, dbPainel, projectId }) {
         res.json({ success: true, data: rows });
     }));
 
-    // B3 (api_noir.md) — resumo de meta/variação/projeção ao lado das chaves
+    // B3 — resumo de meta/variação/projeção ao lado das chaves
     // `fase<N>` já existentes. Reaproveita o total do mês da fase final (já
     // calculado no /gestao) em vez de rodar a mesma consulta de novo.
     async function montarResumo(totaisFinalAtual, serieFinal) {
@@ -259,7 +259,7 @@ function criarFlowViewer(configBruto, { db, instanceId, dbPainel, projectId }) {
         if (intervaloDias < 0) {
             return res.status(400).json({ success: false, message: 'Data de início não pode ser depois da data de fim.' });
         }
-        // B11 (api_noir.md) — texto exato do contrato.
+        // B11 — texto exato do contrato.
         if (dataFim > hojeBrasil()) {
             return res.status(400).json({ success: false, message: 'A data final não pode ser futura.' });
         }
@@ -292,7 +292,7 @@ function criarFlowViewer(configBruto, { db, instanceId, dbPainel, projectId }) {
         res.json({ success: true, data });
     }));
 
-    // B2 (api_noir.md) — tudo que a tela de fluxo genérica precisa pra desenhar,
+    // B2 — tudo que a tela de fluxo genérica precisa pra desenhar,
     // sem nenhuma constante no frontend. Nunca expõe fluId/fonte/schema (internos).
     // Cacheável: o grafo só muda com um novo deploy do manifesto (não com o ETL).
     router.get('/config', rota('Erro ao montar config', async (req, res) => {
@@ -315,7 +315,7 @@ function criarFlowViewer(configBruto, { db, instanceId, dbPainel, projectId }) {
         });
     }));
 
-    // B6 (api_noir.md) — usada pelo agregado global (core/painel-resumo.js),
+    // B6 — usada pelo agregado global (core/painel-resumo.js),
     // não por uma rota própria desta instância. Reaproveita buscarContagemPorFase
     // e montarResumo (mesmos dados do /gestao e do /gargalos, uma via só).
     async function buscarResumoPainel() {
@@ -357,7 +357,7 @@ function criarFlowViewer(configBruto, { db, instanceId, dbPainel, projectId }) {
                   return { imagensHoje: rows[0].total };
               };
 
-    // B1 (api_noir.md) — ficha resumida desta instância pro catálogo global
+    // B1 — ficha resumida desta instância pro catálogo global
     // (core/catalogo.js); dado estático do manifesto, não precisa de função async.
     const infoCatalogo = {
         nome: config.apresentacao?.nome ?? instanceId,

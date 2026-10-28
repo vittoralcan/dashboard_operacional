@@ -1,4 +1,4 @@
-# Painel Operacional (Noir Bento) — cabeçalhos, CSP e cache de /app/ (frontend_spec.md §10–11, §13).
+# Painel Operacional (Noir Bento) — cabeçalhos, CSP e cache de /app/.
 #
 # CSP em MODO RELATÓRIO (Onda 9): o navegador só AVISA (console + chave `dsn-csp` do sessionStorage, ver
 # js/csp-relato.js); nada é bloqueado. Depois de uma rodada limpa em homologação (/_hml/), troque o nome do

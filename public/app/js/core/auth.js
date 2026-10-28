@@ -3,7 +3,7 @@ import { CHAVES, store } from './store.js';
 import { rotaConhecida, caminhoDoHash } from './router.js';
 
 /**
- * Sessão e autenticação (frontend_spec.md §7). Mesmas chaves e formatos do `public/auth.js`
+ * Sessão e autenticação. Mesmas chaves e formatos do `public/auth.js`
  * legado (RNB-012): o usuário pode alternar entre as duas versões sem logar de novo.
  * Funções puras + acesso protegido ao armazenamento; nada de DOM.
  *

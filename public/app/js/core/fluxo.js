@@ -1,6 +1,6 @@
 // @ts-check
 /**
- * Geometria, vista (pan/zoom) e validação do fluxograma (design_system.md §11). Pura — sem DOM.
+ * Geometria, vista (pan/zoom) e validação do fluxograma. Pura — sem DOM.
  * Posição dos nós em unidades de grade (`x`, `y`); o passo `cw × ch` e o tamanho do nó `nw × nh`
  * vêm do grafo (Captura 200 × 130 / 164 × 92; Lumen 270 × 150 / 196 × 92).
  *

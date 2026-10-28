@@ -1,4 +1,4 @@
-// GET /api/catalogo (api_noir.md B1) — estrutura de projetos/instâncias a partir
+// GET /api/catalogo — estrutura de projetos/instâncias a partir
 // dos manifestos, pra alimentar menu, paleta de comandos e breadcrumbs do
 // frontend novo. Dado estático (vem só do manifesto já carregado no boot — sem
 // consulta ao banco), por isso não é async nem precisa de `rota()`.

@@ -30,4 +30,4 @@
 | `A1…A9`, `B1…B14` | Endpoint do `back_auth` / `back_dashboard` | [api/](api/) |
 | `RF-`, `RNF-`, `F0-…`, `R-…`, `T-…` | Requisito ou tarefa de origem de um teste de aceite | `tests/acceptance/` |
 
-Alguns comentários citam seções de especificações internas do projeto original (por exemplo `frontend_spec.md §8.2`, `api_noir.md` ou `design_system.md`). Esses documentos não fazem parte do showcase; o conteúdo relevante deles está resumido aqui.
+Alguns comentários citam seções de especificações do projeto (seções e IDs de requisito que não existem aqui). Esses documentos não fazem parte do showcase; o conteúdo relevante deles está resumido aqui.

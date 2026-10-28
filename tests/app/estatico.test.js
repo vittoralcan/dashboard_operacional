@@ -5,7 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 /**
- * Verificações estáticas do frontend novo (frontend_spec.md §12.4): segurança (RNB-004/005/014),
+ * Verificações estáticas do frontend novo: segurança (RNB-004/005/014),
  * integridade do sprite de ícones e ausência de terceiros em tempo de execução.
  */
 

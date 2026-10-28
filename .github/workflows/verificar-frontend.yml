@@ -42,7 +42,7 @@ jobs:
         with:
           node-version: 24
       # innerHTML sem html``, handlers inline, eval/Function/document.write, CDN/terceiros, hexadecimal fora de tokens.css,
-      # CSP do .htaccess coerente com js/config.js (frontend_spec §10 e §12.4)
+      # CSP do .htaccess coerente com js/config.js
       - name: Greps de segurança (estatico + liberacao)
         run: node --test tests/app/estatico.test.js tests/app/liberacao.test.js
 

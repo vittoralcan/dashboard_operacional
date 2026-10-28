@@ -21,15 +21,14 @@ const ALERTAS_RECENTES_MAX = 10;
 // prefixo (sem status novo). Só nesse caso `recentes` devolve a `mensagem`, truncada.
 const PREFIXO_ALERTA = '[ALERTA]';
 const ALERTA_TEXTO_MAX_LENGTH = 300;
-// Q-17 (integracao_bridge.md §11): padrão adotado enquanto ninguém decidir.
+// Q-17: padrão adotado enquanto ninguém decidir.
 const LIMITE_ATRASO_HEARTBEAT_MIN = 15;
 const RECENTES_LIMITE = 20;
 // Colunas instancia (VARCHAR(60)) e envio_heartbeat.versao (VARCHAR(20)).
 const INSTANCIA_MAX_LENGTH = 60;
 const VERSAO_MAX_LENGTH = 20;
 
-// BD-14 (docs/arquitetura/backend.md §7.2, risco 3 de integracao_bridge.md
-// §7): chave por `instancia` (não por IP) — é um cliente automatizado atrás
+// BD-14 (docs/arquitetura/backend.md §7.2, risco 3): chave por `instancia` (não por IP) — é um cliente automatizado atrás
 // de uma única credencial, então um Bridge com bug não deve conseguir travar
 // outro cliente que compartilhe a mesma rede/IP de saída.
 const limitadorEventos = rateLimit({

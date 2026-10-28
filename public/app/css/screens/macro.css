@@ -1,4 +1,4 @@
-/* Macro View (modo TV) — design_system.md §13. Tudo em clamp() para Full HD e 4K; só tokens de cor. */
+/* Macro View (modo TV). Tudo em clamp() para Full HD e 4K; só tokens de cor. */
 .macro { position: fixed; inset: 0; z-index: 50; background: var(--macro-bg); color: var(--fg); display: flex; flex-direction: column; overflow: hidden; }
 .macro.idle { cursor: none; }
 .macro::before { content: ""; position: absolute; inset: 0; pointer-events: none; background-image: radial-gradient(var(--dot) 1px, transparent 1.2px); background-size: 28px 28px; -webkit-mask-image: linear-gradient(180deg, currentColor, transparent 70%); mask-image: linear-gradient(180deg, currentColor, transparent 70%); }

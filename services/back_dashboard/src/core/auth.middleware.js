@@ -18,7 +18,7 @@ function exigirAutenticacao(req, res, next) {
             id: payload.sub,
             login: payload.login,
             tipo: payload.tipo,
-            // Só presentes numa credencial de serviço (A9, integracao_bridge.md)
+            // Só presentes numa credencial de serviço (A9)
             // — undefined pra um usuário comum, ignorado pelo resto do código.
             instancia: payload.instancia,
             escopo: payload.escopo,

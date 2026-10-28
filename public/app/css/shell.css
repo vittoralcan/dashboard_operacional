@@ -1,6 +1,5 @@
 /* ==========================================================================
    SHELL — camadas, barra lateral, barra superior, conteúdo e cabeçalhos
-   (design_system.md §7.9–7.11, §9, §14)
    ========================================================================== */
 .layer { min-height: 100vh; }
 .shell { --sbw: var(--sidebar-w); display: grid; grid-template-columns: var(--sbw) minmax(0, 1fr); min-height: 100vh; transition: grid-template-columns var(--d3) var(--ease); }

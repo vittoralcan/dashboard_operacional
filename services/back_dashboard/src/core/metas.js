@@ -1,4 +1,4 @@
-// GET/PUT /api/metas (api_noir.md B7). Rota global do painel — não pertence a
+// GET/PUT /api/metas. Rota global do painel — não pertence a
 // um projeto/instância específico (por isso mora em core/, não em modules/).
 const express = require('express');
 const { rota } = require('./rota');

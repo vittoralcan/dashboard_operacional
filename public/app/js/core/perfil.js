@@ -2,7 +2,7 @@
 import { instanteDe } from './format.js';
 
 /**
- * Perfil e preferências da conta (api_noir.md A2–A4): normalização do `GET /auth/me`, validação do nome e das preferências e o
+ * Perfil e preferências da conta: normalização do `GET /auth/me`, validação do nome e das preferências e o
  * "emissor" que junta as mudanças e as manda ao servidor depois de uma pausa (A4: gravar local PRIMEIRO, enviar em debounce de 600 ms,
  * falha silenciosa — a preferência local continua valendo). Funções puras; o relógio entra por injeção.
  *

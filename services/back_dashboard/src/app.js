@@ -86,12 +86,12 @@ function criarApp({ db, dbPainel, manifestos, corsOrigins }) {
 
     app.use('/api', criarHealthRouter({ db, espelhos: espelhosUsados(projetos) }));
     app.use('/api', exigirAutenticacao);
-    // BD-16 (integracao_bridge.md): credencial de serviço só pode ir pra /envio/*.
+    // BD-16: credencial de serviço só pode ir pra /envio/*.
     app.use('/api', bloquearServicoForaDeEnvio);
     // Token de turno só vê /operacional/terminal e /operacional/correcoes.
     app.use('/api', bloquearTurnoForaDeOperacional);
 
-    // Rotas globais do painel (api_noir.md Parte B, B7-B9) — não pertencem a
+    // Rotas globais do painel — não pertencem a
     // um projeto/instância; por isso vêm antes do loop por projeto.
     app.use('/api', criarMetasRouter({ dbPainel, exigirAdmin }));
     app.use('/api', criarAtividadesRouter({ dbPainel }));

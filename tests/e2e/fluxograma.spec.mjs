@@ -1,6 +1,6 @@
 import { test, expect } from './fixtures.mjs';
 
-/** Fluxograma: zoom, ajuste, minimapa, modal da fase e foco vindo de uma notificação (frontend_spec §12.2 e). */
+/** Fluxograma: zoom, ajuste, minimapa, modal da fase e foco vindo de uma notificação. */
 
 test('zoom por botão e teclado, "Ajustar à tela" e minimapa', async ({ page, abrir }) => {
   await abrir('#/atlas/negativos/fluxograma');

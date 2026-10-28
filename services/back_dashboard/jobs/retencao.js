@@ -1,4 +1,4 @@
-// Retenção diária de painel.* (backend_spec.md §3.1/§5). Oneshot, agendado
+// Retenção diária de painel.*. Oneshot, agendado
 // pelo timer do systemd — mesmo padrão de jobs/monitor.js.
 //
 //   node jobs/retencao.js

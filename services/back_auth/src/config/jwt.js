@@ -35,8 +35,7 @@ function verificarToken(token) {
 }
 
 /**
- * Assina um token de credencial de serviço (A9, .spec_noir_bento/
- * integracao_bridge.md) — longa duração, nunca atrelado a um usuário final,
+ * Assina um token de credencial de serviço (A9) — longa duração, nunca atrelado a um usuário final,
  * com claims próprios (`instancia`, `escopo`) que o back_dashboard confere
  * antes de aceitar escrita em `/envio/eventos`/`/envio/heartbeat` (D-09).
  * `expiresIn` em segundos (não uma string tipo '365d') para que o `exp` do

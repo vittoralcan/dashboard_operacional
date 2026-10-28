@@ -1,7 +1,7 @@
 // @ts-check
 
 /**
- * Gargalos (api_noir.md B4/B5): normalização de `GET /gargalos` e de `GET /atlas/:instancia/gargalos`, e a linha do cartão
+ * Gargalos: normalização de `GET /gargalos` e de `GET /atlas/:instancia/gargalos`, e a linha do cartão
  * "Gargalos agora". Funções puras: o que o servidor não manda vira `null`, nunca um valor inventado.
  */
 

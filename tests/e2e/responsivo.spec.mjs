@@ -1,6 +1,6 @@
 import { test, expect } from './fixtures.mjs';
 
-/** Definição de Pronto (migration_plan §5): 1920, 1440, 1024, 768 e 390 px sem rolagem horizontal da PÁGINA em nenhuma tela. */
+/** Definição de Pronto: 1920, 1440, 1024, 768 e 390 px sem rolagem horizontal da PÁGINA em nenhuma tela. */
 
 const LARGURAS = [[1920, 1080], [1440, 900], [1024, 768], [768, 1024], [390, 844]];
 const TELAS = [

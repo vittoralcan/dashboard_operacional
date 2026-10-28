@@ -1,5 +1,5 @@
 /* ==========================================================================
-   TOKENS — Noir Bento (design_system.md §3). Única fonte de cor, raio, movimento e camada.
+   TOKENS — Noir Bento. Única fonte de cor, raio, movimento e camada.
    Fora deste arquivo não se escreve cor hexadecimal (RNB-005).
    ========================================================================== */
 
@@ -25,7 +25,7 @@
 
   --sidebar-w: 264px; --sidebar-min: 60px; --topbar-h: 52px;
 
-  /* Camadas (design_system.md §4.1) */
+  /* Camadas */
   --z-float: 20; --z-topbar: 30; --z-sidebar: 40; --z-macro: 50; --z-pop: 70; --z-drawer: 75;
   --z-modal: 80; --z-cmdk: 85; --z-toast: 95; --z-chord: 96; --z-grain: 200; --z-wipe: 240;
   --z-progress: 250; --z-tip: 300;

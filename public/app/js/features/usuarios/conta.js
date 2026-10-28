@@ -3,7 +3,7 @@ import { API } from '../../config.js';
 import { normalizarPerfil } from '../../core/perfil.js';
 
 /**
- * A conta do usuário no `back_auth` (api_noir.md A2–A4): perfil, edição do próprio nome e preferências. Cada método sobe o erro
+ * A conta do usuário no `back_auth`: perfil, edição do próprio nome e preferências. Cada método sobe o erro
  * (a tela decide o que mostrar). `{ success:false }` com 200 também é falha.
  *
  * @param {ReturnType<typeof import('../../core/api.js').criarApi>} api

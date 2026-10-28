@@ -32,8 +32,7 @@ ALTER TABLE usuarios DROP CONSTRAINT IF EXISTS usuarios_tipo_check;
 ALTER TABLE usuarios ADD CONSTRAINT usuarios_tipo_check CHECK (tipo IN ('admin', 'standard', 'turno'));
 
 -- ===================================================================
--- Noir Bento — identidade e preferências (docs/arquitetura/backend.md
--- §4.1, A2-A4 de api_noir.md). Aditivo: nenhuma coluna existente muda de
+-- Noir Bento — identidade e preferências (docs/arquitetura/backend.md §4.1). Aditivo: nenhuma coluna existente muda de
 -- tipo/nome, páginas antigas que não leem estes campos continuam intactas.
 -- ===================================================================
 ALTER TABLE usuarios ADD COLUMN IF NOT EXISTS cargo VARCHAR(100);

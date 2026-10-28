@@ -1,5 +1,5 @@
 /* ==========================================================================
-   REGISTRO DE CAIXAS — app do operador, mobile-first, uma coluna (frontend_screens.md §13)
+   REGISTRO DE CAIXAS — app do operador, mobile-first, uma coluna
    ========================================================================== */
 .rcx { max-width: 480px; margin: 0 auto; display: flex; flex-direction: column; overflow-x: clip; /* a entrada deslizante das telas (translateX) não pode alargar a página */ min-height: calc(100vh - var(--topbar-h) - 48px); }
 .app-top { display: flex; align-items: center; gap: 8px; min-height: 44px; }

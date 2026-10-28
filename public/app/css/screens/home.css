@@ -1,4 +1,4 @@
-/* Seleção de projetos (#/projetos) e hubs BOREAL e ATLAS — frontend_screens.md §5–7. Só tokens (nada de cor fixa). */
+/* Seleção de projetos (#/projetos) e hubs BOREAL e ATLAS. Só tokens (nada de cor fixa). */
 .greet-date { font: 500 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--fg-3); }
 .page-h .acts .ajuda { width: 40px; height: 40px; }
 .help-pop { width: 320px; max-width: calc(100vw - 16px); padding: 14px; font-size: 13px; color: var(--fg-2); line-height: 1.5; }

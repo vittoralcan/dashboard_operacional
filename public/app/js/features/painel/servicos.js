@@ -4,7 +4,7 @@ import { normalizarMetas } from '../../core/metas.js';
 import { normalizarGargalos, normalizarGargaloInstancia } from '../../core/gargalos.js';
 
 /**
- * Serviços do `back_dashboard` que entraram com o backend novo (api_noir.md B4, B5, B7–B9). Cada método devolve o dado já
+ * Serviços do `back_dashboard` que entraram com o backend novo. Cada método devolve o dado já
  * normalizado e SOBE o erro (a tela decide: estado inline, "Em breve" no 404, ou nada). `{ success:false }` com 200 também é erro.
  *
  * @param {ReturnType<typeof import('../../core/api.js').criarApi>} api

@@ -1,6 +1,6 @@
 import { test, expect } from './fixtures.mjs';
 
-/** Teclado, paleta, tema persistido, movimento reduzido (frontend_spec §12.2 c, g, h). */
+/** Teclado, paleta, tema persistido, movimento reduzido. */
 
 test('atalhos G + letra navegam entre projetos (G E → ATLAS, G P → projetos)', async ({ page, abrir }) => {
   await abrir('#/projetos');

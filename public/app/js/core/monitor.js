@@ -100,7 +100,7 @@ export const filtrarPorSistema = (apis, sistema) => (sistema === 'todos' ? apis 
 /** O intervalo escolhido é um dos permitidos? @param {unknown} v */
 export const intervaloValido = (v) => INTERVALOS_TESTE.includes(Number(v));
 
-// ---------------------------------------------------------------- monitor nativo (api_noir.md B10)
+// ---------------------------------------------------------------- monitor nativo
 
 /**
  * Uma entrada de `GET /monitoramento/apis` (ou do `POST …/testar`) no MESMO formato `Api` da tela. `estado: null` = ainda sem

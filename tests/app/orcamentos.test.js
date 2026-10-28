@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { medir, relatorio, FOLGA_ALERTA, LIMITES } from '../../scripts/app-orcamentos.mjs';
 
 /**
- * Orçamentos de desempenho (frontend_spec.md §11, RNB-015). A medição vive em `scripts/app-orcamentos.mjs`
+ * Orçamentos de desempenho (RNB-015). A medição vive em `scripts/app-orcamentos.mjs`
  * (`node scripts/app-orcamentos.mjs` imprime a tabela). Passar de um limite reprova; chegar perto (< 5 % de folga) só avisa
  * no relatório do teste — é o sinal para dividir/adiar carga ANTES de o próximo recurso estourar.
  */

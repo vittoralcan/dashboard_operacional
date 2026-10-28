@@ -3,7 +3,7 @@
 // Cobre as 3 regras que `monitor.js` NÃO cobre (ele só cria as notificações
 // de API fora do ar/de volta): gargalo, ETL atrasado e meta atingida. A 6ª
 // regra da tabela (usuário criado) fica de fora — exige um canal
-// back_auth → back_dashboard que não existe (F4, Q-07 do product_spec).
+// back_auth → back_dashboard que não existe (F4).
 //
 //   node jobs/notificador.js
 //
@@ -60,7 +60,7 @@ async function verificarGargalo(dbPainel, log, { projectId, instancia, hoje }) {
         chaveUnica: `gargalo:${projectId}/${instancia.instanceId}/${gargalo.fasId}:${hoje}`,
         // Rota de deep-link assumida (`/<projeto>/<instancia>/fluxograma`) — o
         // frontend novo ainda não existe (F0/F1 não começaram); ajustar quando
-        // a rota real for definida em frontend_screens.md/migration_plan.md.
+        // a rota real for definida.
         destino: { rota: `/${projectId}/${instancia.instanceId}/fluxograma`, foco: { instancia: instancia.instanceId, fasId: gargalo.fasId } },
     });
     log.info(`gargalo em ${projectId}/${instancia.instanceId} (fase ${gargalo.fasId}, ${gargalo.pastas} pastas).`);

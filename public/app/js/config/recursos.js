@@ -5,7 +5,7 @@
  *   'em-breve' → a tela mostra o bloco/valor marcado "Em breve" e NÃO faz requisição.
  *   'ativo'    → a tela usa o provider real (core/sources.js) e o selo some.
  *
- * Para ligar um recurso: (1) o backend entrega e confirma o contrato de api_noir.md;
+ * Para ligar um recurso: (1) o backend entrega e confirma o contrato;
  * (2) trocar `estado` para 'ativo' AQUI; (3) trocar o stub do provider pelo `api.get` real;
  * (4) teste de contrato; (5) conferir que o selo sumiu. Um recurso por PR.
  *

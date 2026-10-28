@@ -27,7 +27,7 @@ for (const [ca, nome] of [['CA1', 'deploy-back-dashboard.yml'], ['CA2', 'deploy-
 // Marcos do arquivo original que não podem mudar (passos de deploy). No showcase os dois deploys são só manuais (workflow_dispatch).
 const MARCOS = {
   'deploy-back-dashboard.yml': ['workflow_dispatch: {}', 'runs-on: [self-hosted, linux, dashboard]', 'environment: production-dashboard', 'git -C /opt/dashboard reset --hard origin/main', 'sudo systemctl restart back-dashboard', 'curl -fsS --retry 5'],
-  'deploy-frontend.yml': ['workflow_dispatch: {}', 'uses: ./.github/workflows/verificar-frontend.yml', 'needs: verificar', 'wlixcc/SFTP-Deploy-Action@v1.2.4', "local_path: 'public/*'", 'Debug - diagnosticar conectividade SSH/SFTP'],
+  'deploy-frontend.yml': ['workflow_dispatch: {}', 'uses: ./.github/workflows/verificar-frontend.yml', 'needs: verificar', 'wlixcc/SFTP-Deploy-Action@v1.2.4', "local_path: 'public/*'"],
 };
 
 test('CA3: sem write e gatilhos e passos de deploy intactos', () => {

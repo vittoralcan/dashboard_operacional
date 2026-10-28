@@ -1,7 +1,7 @@
 // @ts-check
 import { html, raw } from '../core/html.js';
 
-/** FNV-1a de 32 bits (design_system.md §8). @param {string} s */
+/** FNV-1a de 32 bits. @param {string} s */
 export function hashTexto(s) {
   let h = 2166136261;
   for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }

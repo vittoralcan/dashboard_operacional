@@ -21,16 +21,6 @@ jobs:
       - name: Checkout do código
         uses: actions/checkout@v4
 
-        
-      - name: Debug - diagnosticar conectividade SSH/SFTP
-        run: |
-          echo "--- TCP bruto ---"
-          timeout 10 bash -c "cat < /dev/null > /dev/tcp/${{ secrets.SSH_HOST }}/${{ secrets.SSH_PORT }}" && echo "TCP: conectou" || echo "TCP: falhou/recusado"
-          echo "--- Handshake SSH (sem autenticar) ---"
-          timeout 10 ssh -vvv -o StrictHostKeyChecking=no -o ConnectTimeout=8 -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} exit 2>&1 | tail -40 || true
-        continue-on-error: true
-
-
       - name: Deploy via SFTP
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:

@@ -1,4 +1,4 @@
-// GET /api/painel/resumo (api_noir.md B6) — KPIs de todas as instâncias numa
+// GET /api/painel/resumo — KPIs de todas as instâncias numa
 // chamada só, pra seleção de projetos/hubs não precisarem de 8-10 requisições
 // na abertura. Cada instância falha de forma independente (RA-015): uma
 // indisponível vira `null`, nunca derruba as demais.

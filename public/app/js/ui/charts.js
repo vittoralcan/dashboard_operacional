@@ -6,7 +6,7 @@ import { reduzido } from '../core/motion.js';
 import { tetoBonito, curvaMonotona, indicesRotulos, geometriaAnel, indiceMaisProximo } from '../core/geometria.js';
 
 /**
- * Gráficos SVG próprios (CMP-03, design_system.md §10) — substituem Chart.js e ApexCharts.
+ * Gráficos SVG próprios (CMP-03) — substituem Chart.js e ApexCharts.
  * Redesenham via ResizeObserver só se a largura mudar > 6 px. Cores só por token (CSS).
  * Todos os textos de dado passam por `esc`. Os gráficos de elemento devolvem `{ destruir }`.
  */

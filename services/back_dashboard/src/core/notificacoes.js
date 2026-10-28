@@ -1,4 +1,4 @@
-// GET/POST /api/notificacoes (api_noir.md B9). Leitura é por usuário via
+// GET/POST /api/notificacoes. Leitura é por usuário via
 // painel.notificacao_leitura — a notificação em si é global (gerada por job,
 // não implementado nesta leva: fica pronta pra quando o notificador existir).
 const express = require('express');

@@ -1,6 +1,5 @@
-// Quebra "Top 2 + Outros" por estado da federação, usada hoje só pelo BOREAL (projeto nacional —
-// ver product_spec.md, "Dashboard de Digitalização": "listagem de status por estado da federação
-// (no BOREAL)"). O ATLAS não usa (opera numa única unidade da federação). Fica como utilitário fixo
+// Quebra "Top 2 + Outros" por estado da federação, usada hoje só pelo BOREAL (projeto nacional: listagem de status por estado da federação
+// no BOREAL). O ATLAS não usa (opera numa única unidade da federação). Fica como utilitário fixo
 // do módulo, não como config de instância (RAM-001), porque não é dado de negócio de um projeto —
 // é a tabela de códigos que o Captura grava nas posições 5–7 do nome da pasta
 // (ex.: CX00257G10000942SOS -> "257" -> Amazonas), igual pros dois projetos que usarem esse padrão.

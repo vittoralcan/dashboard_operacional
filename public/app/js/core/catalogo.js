@@ -1,6 +1,6 @@
 // @ts-check
 /**
- * Catálogo de projetos, módulos e fluxos (frontend_spec.md §8.5/§9) e tudo que se deriva dele:
+ * Catálogo de projetos, módulos e fluxos e tudo que se deriva dele:
  * seções da barra lateral, migalhas, itens da paleta, atalhos `G + letra` e atalhos.
  * Hoje vem só de `config/projetos.json`; quando `GET /catalogo` existir (recurso `catalogo`)
  * o resultado dele é mesclado por cima (RNB-007). Funções puras — sem DOM.

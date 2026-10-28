@@ -1,7 +1,7 @@
 // @ts-check
 
 /**
- * Metas mensais (api_noir.md B7): normalização da resposta de `GET /metas`, escopos que aceitam meta, validação do valor digitado
+ * Metas mensais: normalização da resposta de `GET /metas`, escopos que aceitam meta, validação do valor digitado
  * e cálculo do progresso. Módulo pequeno e separado de propósito: quase toda tela com medidor de meta o importa (orçamento RNB-015).
  */
 

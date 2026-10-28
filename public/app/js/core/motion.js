@@ -2,7 +2,7 @@
 import { $, $$ } from './dom.js';
 import { clamp, fmt, fmtDec } from './format.js';
 
-/** Respeita `prefers-reduced-motion` (design_system.md §5.4). */
+/** Respeita `prefers-reduced-motion`. */
 export const reduzido = () => { try { return globalThis.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; } };
 
 /** @param {number} ms */

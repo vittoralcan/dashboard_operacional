@@ -3,7 +3,7 @@ import { instanteDe, horaBR, tempoRelativo } from './format.js';
 import { DIAS_SEMANA, somarDias, inicioDoDia } from './calendario.js';
 
 /**
- * Lógica pura dos fluxos Captura (Digitalização BOREAL e os 4 fluxos ATLAS) — frontend_screens.md §11.
+ * Lógica pura dos fluxos Captura (Digitalização BOREAL e os 4 fluxos ATLAS).
  * Um único módulo serve as 5 instâncias (RNB-003); cada uma é só uma configuração (`config/fluxos/*.json`,
  * mesmo schema de `GET …/config`).
  *
@@ -100,7 +100,7 @@ export function normalizarGestao(cfg, data) {
 const numOuNulo = (v) => (v === null || v === undefined || v === '' || !Number.isFinite(Number(v)) ? null : Number(v));
 
 /**
- * `resumo` ao lado das chaves `fase<N>` do `/gestao` (api_noir.md B3): total finalizado no mês, meta, variação (RN-010), projeção
+ * `resumo` ao lado das chaves `fase<N>` do `/gestao`: total finalizado no mês, meta, variação (RN-010), projeção
  * (RN-011) e o mês anterior. `null` quando o servidor não manda (versão antiga ou falha só do resumo — RNB-007): a tela esconde o bloco.
  * @param {any} r
  * @returns {{ finalizadasMes: { pastas: number, imagens: number }, metaPastas: number|null, variacaoPct: number|null, projecaoMes: number|null,

@@ -15,3 +15,17 @@ tests/e2e/playwright-report/
 
 # contexto privado da construção do showcase (cita nomes reais; NUNCA publicar)
 .contexto/
+
+# arquivos de trabalho do Claude Code (nunca publicar)
+.claude/
+CLAUDE.md
+
+# variantes de .env (os *.env.example continuam versionados)
+.env.*
+!*.env.example
+!.env.example
+
+# editores
+.idea/
+*.swp
+.DS_Store

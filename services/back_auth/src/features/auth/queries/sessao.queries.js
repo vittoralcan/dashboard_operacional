@@ -2,8 +2,7 @@ const { pool } = require('../../../config/db-postgres');
 
 /**
  * Grava uma sessão de serviço (A9, docs/api/envio-bridge.md) —
- * nunca usada para sessões 'web'/'tv' (ainda não implementadas, ver F4 em
- * backend_spec.md §4.1). `escopo` é gravado como jsonb.
+ * nunca usada para sessões 'web'/'tv' (ainda não implementadas, ver F4). `escopo` é gravado como jsonb.
  */
 async function criarSessaoServico({ id, usuarioId, tokenHash, descricao, instancia, escopo, expiraEm }) {
     await pool.query(

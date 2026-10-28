@@ -52,7 +52,7 @@ function validarConfig(config, instanceId) {
         }
     }
 
-    // B2 (api_noir.md) — tudo abaixo é opcional e só serve a tela de fluxo genérica
+    // B2 — tudo abaixo é opcional e só serve a tela de fluxo genérica
     // (apresentação + grafo); nenhuma instância existente (ATLAS já migrado, BOREAL
     // arquivado) deixa de validar por não ter esses campos (RNB-B1: aditivo).
     if (config.visualStyle !== undefined && !VISUAL_STYLES_VALIDOS.has(config.visualStyle)) {

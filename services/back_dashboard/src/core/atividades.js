@@ -1,4 +1,4 @@
-// GET /api/atividades (api_noir.md B8). Escopo desta leva: só a fonte
+// GET /api/atividades. Escopo desta leva: só a fonte
 // `painel.auditoria` (RN-014, fonte 1) — relatório gerado, meta definida, etc.
 // A fonte de Higienização (RN-014, fonte 2) lia TBL_REG_PRODUCAO via back_boreal;
 // como o projeto BOREAL está em encerramento (ver docs/arquitetura/visao-geral.md

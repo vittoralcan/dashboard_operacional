@@ -7,7 +7,7 @@ import { valorEmBreve, blocoEmBreve } from '../../ui/embreve.js';
 import { delta, medidor } from '../../ui/controles.js';
 
 /**
- * Cartões compartilhados pela seleção de projetos e pelos hubs (frontend_screens.md §5–7). Só markup e pintura dos "slots"
+ * Cartões compartilhados pela seleção de projetos e pelos hubs. Só markup e pintura dos "slots"
  * (`data-k`): o nome do cartão-link é o próprio conteúdo (título + número), então um valor novo nunca fica fora do que o leitor de tela lê.
  * Todo cartão é `role="link"` com `data-nav`; o clique/Enter/Espaço é ligado por delegação na tela.
  */

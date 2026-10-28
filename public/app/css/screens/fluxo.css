@@ -1,5 +1,5 @@
 /* ==========================================================================
-   FLUXOGRAMA — canvas com pan/zoom, nós, HUD e minimapa (design_system.md §11, FLX-05…11)
+   FLUXOGRAMA — canvas com pan/zoom, nós, HUD e minimapa (FLX-05…11)
    ========================================================================== */
 .flow {
   position: relative; height: clamp(460px, calc(100vh - 300px), 860px); overflow: hidden; border-radius: var(--r-xl);

@@ -1,6 +1,6 @@
 // @ts-check
 /**
- * Sequência REAL do login (frontend_spec.md §7.3, AUT-02/05/06, RNB-009). Cada etapa executa
+ * Sequência REAL do login (AUT-02/05/06, RNB-009). Cada etapa executa
  * trabalho de verdade e é cronometrada; nada de milissegundos fixos nem de atraso artificial acima
  * de `duracaoMinMs`. Dependências injetadas → testável sem rede nem DOM.
  *

@@ -1,6 +1,6 @@
 // @ts-check
 /**
- * Decisão de acesso a uma rota (AUT-09, frontend_spec.md §5.2). Pura — o roteador só obedece.
+ * Decisão de acesso a uma rota (AUT-09). Pura — o roteador só obedece.
  * O backend sempre revalida; isto é só UX.
  *
  * @typedef {{ tipo?: string, precisaTrocarSenha?: boolean } | null} Usuario

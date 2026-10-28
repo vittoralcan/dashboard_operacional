@@ -9,7 +9,7 @@ import { reduzido } from '../../core/motion.js';
 import { ic } from '../../ui/icons.js';
 
 /**
- * Motor do fluxograma (FLX-05, 07, 08, 11, 14; design_system.md §11): nós, losangos e arestas ortogonais,
+ * Motor do fluxograma (FLX-05, 07, 08, 11, 14): nós, losangos e arestas ortogonais,
  * pan (mouse/toque, limiar de 4 px), pinça, `Ctrl/⌘ + roda`, `Shift + roda`, botões e teclas `+ − 0`,
  * minimapa clicável, foco em nó e legenda/contadores flutuantes (HUD). Serve a TODOS os fluxos: Lumen (Indexação IA)
  * e Captura (Digitalização e ATLAS). O conteúdo de cada nó é do chamador.

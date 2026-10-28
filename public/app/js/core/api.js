@@ -1,6 +1,6 @@
 // @ts-check
 /**
- * Cliente HTTP (frontend_spec.md §8.2): timeout, retry só em GET, ETag, erros normalizados
+ * Cliente HTTP: timeout, retry só em GET, ETag, erros normalizados
  * e token anexado SOMENTE a URLs das bases configuradas (FE-06).
  */
 

@@ -6,7 +6,7 @@ import { ic, icf } from '../../ui/icons.js';
 import { LOGO } from '../../ui/logo.js';
 import { ilustracao } from '../../ui/empty.js';
 
-/** Markup da Macro View (frontend_screens.md §10): estrutura fixa + o palco de cada projeto. Só devolve `Html`. */
+/** Markup da Macro View: estrutura fixa + o palco de cada projeto. Só devolve `Html`. */
 
 /** Cartão de um número (ícone, nome + sub, número gigante, "<unidade> · hoje"). `embreve` mostra o texto "Em breve" sem número.
  * @param {import('../../core/macro.js').CartaoMacro} c @param {number} i */

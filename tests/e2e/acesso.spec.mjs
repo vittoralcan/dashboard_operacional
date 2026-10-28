@@ -1,6 +1,6 @@
 import { test, expect } from './fixtures.mjs';
 
-/** Login, guarda de rota, destino pós-login, papéis e saída (frontend_spec §12.2 a–b). */
+/** Login, guarda de rota, destino pós-login, papéis e saída. */
 
 const entrar = async (page, login, senha) => {
   await page.fill('#login', login);

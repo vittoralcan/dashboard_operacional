@@ -3,7 +3,7 @@ import { clamp, fmt } from './format.js';
 import { INSTANCIAS_ATLAS } from './painel.js';
 
 /**
- * Macro View (MAC-01…05, frontend_screens.md §10): o que cada projeto mostra e a máquina de rotação — funções puras, sem DOM
+ * Macro View (MAC-01…05): o que cada projeto mostra e a máquina de rotação — funções puras, sem DOM
  * nem relógio (o tempo entra como argumento), para testar a troca de telas, a pausa e as barras *stories*.
  *
  * @typedef {{ id: string, nome: string, sub: string, icone: string, unidade?: string, chave?: string, formato?: 'fracao', semHoje?: boolean, embreve?: string }} CartaoMacro
