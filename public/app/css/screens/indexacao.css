@@ -1,0 +1,48 @@
+/* ==========================================================================
+   INDEXAÇÃO IA — cartões de etapa, barra de filtros e seletores (frontend_screens.md §14)
+   ========================================================================== */
+.etapa { gap: 10px; padding: 14px 16px; }
+.etapa .idx { font: 500 10.5px var(--mono); color: var(--fg-3); }
+.etapa .nm { font: 600 11px/1.3 var(--font); letter-spacing: .04em; text-transform: uppercase; color: var(--fg-2); min-height: 28px; }
+.etapa .meter { height: 3px; }
+.etapa-grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 12px; align-content: start; }
+.ix-busy [data-ix], .ix-busy .fn-m b { opacity: .5; transition: opacity var(--d2); }
+.ix-meta { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+
+/* barra flutuante (nas duas abas) — base em shell.css */
+.float-bar { flex-wrap: wrap; justify-content: center; }
+.fb-stat { border-right: 1px solid var(--border-2); padding-right: 14px; }
+.fb-btn[aria-expanded="true"] { border-color: var(--accent); color: var(--fg); }
+.fb-btn .ic { font-size: 15px; }
+.fb-btn .val { color: var(--fg); font-weight: 500; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fb-busy { display: inline-flex; align-items: center; gap: 8px; padding: 0 10px; font: 12px var(--mono); color: var(--accent-text); }
+.fb-busy[hidden] { display: none; }
+
+/* seletores de Estado (DR) e Unidade */
+.un-pop, .uf-pop { padding: 0; }
+.uf-pop { width: 320px; }
+.un-pop { width: 360px; }
+.sel-h { padding: 10px 12px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 8px; }
+.sel-list { max-height: 300px; overflow-y: auto; padding: 6px 10px; }
+.sel-list:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.sel-f { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--border); }
+.sel-vazio { padding: 18px 12px; text-align: center; font-size: 12.5px; color: var(--fg-3); display: flex; align-items: center; justify-content: center; gap: 8px; }
+.chk-l { display: flex; align-items: center; gap: 9px; padding: 5px 2px; font-size: 13px; color: var(--fg-2); cursor: pointer; border-radius: 6px; }
+.chk-l:hover { color: var(--fg); }
+.chk-l.forte { font-weight: 600; color: var(--fg); }
+.chk-l input { appearance: none; -webkit-appearance: none; width: 15px; height: 15px; border-radius: 4px; border: 1.5px solid var(--border-3); margin: 0; display: grid; place-items: center; flex: none; cursor: pointer; }
+.chk-l input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.chk-l input:checked, .chk-l input:indeterminate { background: var(--accent-solid); border-color: var(--accent-solid); }
+.chk-l input:checked::after { content: ""; width: 4px; height: 8px; border: solid var(--on-accent); border-width: 0 1.6px 1.6px 0; transform: rotate(45deg) translate(-1px, -1px); }
+.chk-l input:indeterminate::after { content: ""; width: 7px; height: 1.6px; background: var(--on-accent); }
+
+/* documentos por data */
+.aviso-amostra { display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-radius: var(--r-md); background: var(--warn-soft); color: var(--warn); font-size: 12.5px; }
+.doc-corpo { display: flex; flex-direction: column; gap: 14px; }
+.doc-cal { display: flex; justify-content: center; padding-top: 4px; }
+@media (max-width: 760px) {
+  .float-bar { width: 100%; }
+  .fb-stat { border-right: 0; width: 100%; }
+  .fb-btn { flex: 1 1 100%; justify-content: space-between; }
+  .uf-pop, .un-pop { width: calc(100vw - 24px); }
+}

@@ -1,0 +1,13 @@
+/* Digitalização — #/digitalizacao. Visual em operacional.css; aqui só o que é da tela. */
+.dig-grade { display: grid; grid-template-columns: minmax(340px, 460px) minmax(0, 1fr); gap: 16px; align-items: start; }
+.dig-acao { display: flex; flex-direction: column; gap: 16px; }
+.dig-nova { min-height: 92px; font-size: 28px; }
+.dig-nova .ic { font-size: 34px; }
+.dig-nova.ativo { box-shadow: 0 0 0 4px var(--accent-ring); }
+.dig-acao[data-modo="nomes"] .dig-nova, .dig-acao[data-modo="nomes"] .op-bip, .dig-acao[data-modo="concluir"] .dig-nova, .dig-acao[data-modo="concluir"] .op-bip { display: none; }
+.dig-concluir[hidden], .dig-nomes[hidden] { display: none; }
+.dig-resumo { display: flex; flex-direction: column; gap: 6px; margin: 0 0 16px; }
+.dig-imagens { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.dig-botoes { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+.dig-botoes .primary { flex: 1 1 220px; min-height: 72px; font-size: 24px; }
+@media (max-width: 960px) { .dig-grade { grid-template-columns: 1fr; } }

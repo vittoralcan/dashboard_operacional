@@ -1,0 +1,39 @@
+# Um ciclo do verificador de APIs monitoradas (B10). Disparado pelo timer de
+# mesmo nome a cada 5 min; o job confere painel.monitor_config.intervalo_min e
+# pula se o intervalo configurado ainda não venceu (não precisa de outro timer
+# por intervalo — o timer dispara sempre, quem decide rodar de verdade é o job).
+#
+# Instalação (na VM, depois de back-dashboard.service já existir):
+#   sudo cp back-dashboard-monitor.service back-dashboard-monitor.timer /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now back-dashboard-monitor.timer
+#
+# Operação:
+#   systemctl list-timers back-dashboard-monitor.timer
+#   journalctl -u back-dashboard-monitor -n 50
+#   sudo systemctl start back-dashboard-monitor      roda um ciclo agora
+
+[Unit]
+Description=Verificador de APIs monitoradas (back_dashboard)
+Wants=network-online.target
+After=network-online.target postgresql.service
+
+[Service]
+Type=oneshot
+# Mesmo usuário/env do próprio back_dashboard — o job só lê/escreve em
+# db_dashboard com as mesmas credenciais PG_PAINEL_* da API.
+User=dashboard
+Group=dashboard
+EnvironmentFile=/etc/dashboard/back-dashboard.env
+WorkingDirectory=/opt/dashboard/services/back_dashboard
+ExecStart=/usr/bin/node jobs/monitor.js
+# Soma do timeout de todas as APIs cadastradas (cada uma tem seu próprio
+# timeout_ms, default 10s) — acima disso algo travou, o systemd mata o ciclo.
+TimeoutStartSec=5min
+MemoryMax=256M
+Nice=10
+
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true

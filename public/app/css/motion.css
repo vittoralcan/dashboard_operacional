@@ -1,0 +1,33 @@
+/* ==========================================================================
+   MOVIMENTO — catálogo de animações (design_system.md §5) e movimento reduzido
+   ========================================================================== */
+@keyframes rot { to { transform: rotate(360deg); } }
+@keyframes ping { 0% { transform: scale(1); opacity: .7; } 80%, 100% { transform: scale(2.6); opacity: 0; } }
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes shimmer { to { transform: translateX(100%); } }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes dash { to { stroke-dashoffset: -36; } }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 15% { transform: translateX(-8px); } 30% { transform: translateX(7px); } 45% { transform: translateX(-5px); } 60% { transform: translateX(4px); } 75% { transform: translateX(-2px); } }
+@keyframes toast-in { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: none; } }
+@keyframes toast-out { to { opacity: 0; transform: translateX(24px) scale(.97); } }
+@keyframes toast-bar { from { width: 100%; } to { width: 0; } }
+@keyframes logline { from { opacity: 0; transform: translateX(-6px); } to { opacity: 1; transform: none; } }
+@keyframes wipe-in { from { transform: translateX(-110%); } to { transform: translateX(-28%); } }
+@keyframes wipe-out { from { transform: translateX(-28%); } to { transform: translateX(110%); } }
+@keyframes sair { to { opacity: 0; transform: scale(.985); filter: blur(4px); } }
+@keyframes node-in { from { opacity: 0; transform: translateY(8px) scale(.97); } to { opacity: 1; transform: none; } }
+@keyframes gpulse { 0%, 100% { box-shadow: 0 0 0 3px var(--accent-soft), 0 0 22px -6px var(--accent-ring); } 50% { box-shadow: 0 0 0 6px var(--accent-softer), 0 0 36px -2px var(--accent-ring); } }
+@keyframes mv-in { from { opacity: 0; transform: translateY(18px); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes pop { 0% { transform: scale(.4); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+@keyframes flash { 0% { box-shadow: 0 0 0 0 var(--accent-ring); border-color: var(--accent); } 100% { box-shadow: 0 0 0 10px transparent; } }
+@keyframes row-out { to { opacity: 0; transform: translateX(16px); } }
+@keyframes app-in-r { from { opacity: 0; transform: translateX(36px); } to { opacity: 1; transform: none; } }
+@keyframes app-in-l { from { opacity: 0; transform: translateX(-36px); } to { opacity: 1; transform: none; } }
+@keyframes scan { from { top: 10px; } to { top: calc(100% - 12px); } }
+@keyframes blink { 50% { opacity: .35; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  .edge-flow { display: none; }
+}

@@ -1,0 +1,13 @@
+/* Tablet do turno — #/tablet. Layout em duas colunas no tablet deitado; o visual vem de operacional.css. */
+#tablet { background: var(--bg); color: var(--fg); min-height: 100vh; }
+#tablet[hidden] { display: none; }
+.tab-grade { display: grid; grid-template-columns: minmax(320px, 400px) minmax(0, 1fr); gap: 16px; align-items: start; }
+.tab-acao { display: flex; flex-direction: column; gap: 16px; }
+.tab-nova { min-height: 92px; font-size: 28px; }
+.tab-nova .ic { font-size: 34px; }
+.tab-nova.ativo { box-shadow: 0 0 0 4px var(--accent-ring); }
+.tab-nomes[hidden] { display: none; }
+/* Escolhendo o nome: o resto sai da frente para a lista aparecer inteira. */
+.tab-acao[data-modo="nomes"] .tab-nova, .tab-acao[data-modo="nomes"] .op-bip, .tab-acao[data-modo="nomes"] .op-seg { display: none; }
+.tab-cancelar { margin-top: 14px; }
+@media (max-width: 900px) { .tab-grade { grid-template-columns: 1fr; } }

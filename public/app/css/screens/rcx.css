@@ -1,0 +1,53 @@
+/* ==========================================================================
+   REGISTRO DE CAIXAS — app do operador, mobile-first, uma coluna (frontend_screens.md §13)
+   ========================================================================== */
+.rcx { max-width: 480px; margin: 0 auto; display: flex; flex-direction: column; overflow-x: clip; /* a entrada deslizante das telas (translateX) não pode alargar a página */ min-height: calc(100vh - var(--topbar-h) - 48px); }
+.app-top { display: flex; align-items: center; gap: 8px; min-height: 44px; }
+.app-top .icon-btn { width: 44px; height: 44px; }
+.app-top .t { margin: 0; font: 500 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--fg-3); flex: 1; text-align: center; padding-right: 44px; }
+.app-top .icon-btn[hidden] + .t { padding-right: 0; }
+.app-scr { flex: 1; display: flex; flex-direction: column; padding: 8px 2px 22px; gap: 14px; }
+.app-scr.in-r { animation: app-in-r .38s var(--ease) both; }
+.app-scr.in-l { animation: app-in-l .38s var(--ease) both; }
+.app-h { display: flex; flex-direction: column; gap: 6px; margin-top: 6px; }
+.app-h h2 { font-size: 24px; letter-spacing: -0.035em; line-height: 1.12; }
+.app-h p { color: var(--fg-2); font-size: 14px; }
+.app-grow { flex: 1; }
+.app-btns { display: flex; flex-direction: column; gap: 8px; }
+.app-big { height: 52px; min-height: 44px; border-radius: 14px; font-size: 15px; font-weight: 600; width: 100%; justify-content: center; }
+.app-code { height: 64px; border-radius: 14px; font: 600 26px var(--mono); letter-spacing: .12em; }
+.app-code input { text-align: center; text-transform: uppercase; font: inherit; letter-spacing: inherit; }
+.app-code > .ic { font-size: 22px; }
+.app-tile { border: 1px solid var(--border-2); border-radius: 14px; padding: 14px; background: var(--surface); display: flex; flex-direction: column; gap: 10px; }
+.app-tile .kv { display: flex; justify-content: space-between; gap: 10px; font-size: 14px; color: var(--fg-2); }
+.app-tile .kv b { font: 600 14px var(--mono); color: var(--fg); }
+.app-texto { color: var(--fg-2); font-size: 14.5px; line-height: 1.5; }
+.app-texto.alerta { color: var(--err); font-weight: 500; }
+.app-texto .mono { color: var(--fg); }
+.app-nota { font-size: 12px; margin-top: 10px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.app-nome { color: var(--ok); font-size: 14px; font-weight: 500; margin: 8px 0 0; min-height: 20px; }
+.app-aviso { display: flex; align-items: center; gap: 8px; justify-content: center; padding: 22px 0; font-size: 13px; }
+.app-ok { width: 76px; height: 76px; border-radius: 50%; display: grid; place-items: center; margin: 24px auto 4px; background: var(--ok-soft); color: var(--ok); animation: pop .6s var(--spring) both; }
+.app-ok .ic { font-size: 40px; }
+.app-list { display: flex; flex-direction: column; }
+.app-list > div { display: flex; align-items: center; gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--border); font-size: 14px; min-height: 44px; }
+.app-list .nm { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.app-list .mono { font-size: 12px; color: var(--fg-3); }
+.stepper { display: flex; align-items: center; justify-content: center; gap: 18px; padding: 16px 0; }
+.stepper .icon-btn { width: 56px; height: 56px; border-radius: 50%; border: 1px solid var(--border-3); background: var(--surface-2); }
+.stepper .icon-btn .ic { font-size: 22px; }
+.stepper .icon-btn:active { transform: scale(.94); }
+.stepper .val { font: 600 56px/1 var(--mono); width: 130px; text-align: center; font-variant-numeric: tabular-nums; letter-spacing: -0.04em; background: transparent; border: 0; outline: none; color: var(--fg); }
+.stepper .val:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 8px; }
+
+/* leitor: o fundo é sempre escuro (câmera), por isso usa --mask-on / --on-accent e não os tokens de tema */
+.scanner { position: relative; min-height: 300px; border-radius: 18px; overflow: hidden; background: var(--mask-on); }
+.scanner .cam-video, .scanner video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.scan-frame { position: absolute; left: 50%; top: 46%; width: 200px; height: 200px; margin: -100px 0 0 -100px; pointer-events: none; }
+.scan-frame i { position: absolute; width: 34px; height: 34px; border: 3px solid var(--on-accent); }
+.scan-frame i:nth-child(1) { left: 0; top: 0; border-right: 0; border-bottom: 0; border-radius: 12px 0 0 0; }
+.scan-frame i:nth-child(2) { right: 0; top: 0; border-left: 0; border-bottom: 0; border-radius: 0 12px 0 0; }
+.scan-frame i:nth-child(3) { left: 0; bottom: 0; border-right: 0; border-top: 0; border-radius: 0 0 0 12px; }
+.scan-frame i:nth-child(4) { right: 0; bottom: 0; border-left: 0; border-top: 0; border-radius: 0 0 12px 0; }
+.scan-line { position: absolute; left: 10px; right: 10px; top: 10px; height: 2px; background: var(--accent-hi); box-shadow: 0 0 14px 2px var(--accent); animation: scan 1.6s ease-in-out infinite alternate; pointer-events: none; }
+.scan-cap { position: absolute; left: 0; right: 0; bottom: 18px; text-align: center; font-size: 13px; color: var(--on-accent); text-shadow: 0 1px 3px var(--mask-on); }

@@ -1,0 +1,10 @@
+[Unit]
+Description=Agenda o backup diário do PostgreSQL às 02:30
+
+[Timer]
+OnCalendar=*-*-* 02:30:00
+Persistent=true
+AccuracySec=1min
+
+[Install]
+WantedBy=timers.target

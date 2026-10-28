@@ -1,0 +1,17 @@
+{
+  "name": "painel-operacional-showcase",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Showcase do Painel Operacional: dashboards de produção para gestão documental e digitalização, com dados fictícios. Cada serviço mantém o próprio package.json.",
+  "license": "MIT",
+  "engines": { "node": ">=20.6" },
+  "scripts": {
+    "demo": "node scripts/servir-demo.mjs",
+    "test:front": "node --test \"tests/app/*.test.js\"",
+    "test:back": "node --test services/back_dashboard/tests/*.test.js",
+    "test:aceite": "node --test \"tests/acceptance/**/*.test.js\"",
+    "test:e2e": "cd tests/e2e && npx playwright test",
+    "orcamentos": "node scripts/app-orcamentos.mjs",
+    "verify": "npm run test:front && npm run test:back && npm run test:aceite"
+  }
+}

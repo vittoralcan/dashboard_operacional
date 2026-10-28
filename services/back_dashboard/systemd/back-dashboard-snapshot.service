@@ -1,0 +1,34 @@
+# Retrato de estoque e finalizadas por fase a cada virada de turno (07h e 19h
+# de São Paulo) em painel.snapshot_fase; apaga retratos com mais de 180 dias.
+# Disparado pelo timer de mesmo nome.
+#
+# Instalação (na VM, depois de back-dashboard.service já existir):
+#   sudo cp back-dashboard-snapshot.service back-dashboard-snapshot.timer /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now back-dashboard-snapshot.timer
+#
+# Operação:
+#   systemctl list-timers back-dashboard-snapshot.timer
+#   journalctl -u back-dashboard-snapshot -n 50
+#   sudo systemctl start back-dashboard-snapshot      roda agora
+
+[Unit]
+Description=Retrato de fases na virada de turno (back_dashboard)
+Wants=network-online.target
+After=network-online.target postgresql.service
+
+[Service]
+Type=oneshot
+User=dashboard
+Group=dashboard
+EnvironmentFile=/etc/dashboard/back-dashboard.env
+WorkingDirectory=/opt/dashboard/services/back_dashboard
+ExecStart=/usr/bin/node jobs/snapshot.js
+TimeoutStartSec=5min
+MemoryMax=256M
+Nice=10
+
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true

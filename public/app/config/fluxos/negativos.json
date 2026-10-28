@@ -1,0 +1,61 @@
+{
+  "instancia": "negativos", "projeto": "ATLAS", "nome": "Negativos", "sub": "ATLAS · Captura",
+  "rota": "/atlas/negativos", "fonte": "atlas", "aValidar": false, "faseFinal": 12,
+  "passo": {"cw":200,"ch":130,"nw":164,"nh":92},
+  "gestaoColunas": [{"fasId":7,"titulo":"Controle de Qualidade"},{"fasId":16,"titulo":"Verificação"},{"fasId":12,"titulo":"Finalizados"}],
+  "fases": [
+      {"fasId":50,"nome":"Importação","tipo":"entrada"},
+      {"fasId":68,"nome":"Suspenso Importação","tipo":"erro"},
+      {"fasId":60,"nome":"CQ Automático","tipo":"processo"},
+      {"fasId":69,"nome":"Suspenso CQ Automático","tipo":"erro"},
+      {"fasId":7,"nome":"Controle de Qualidade","tipo":"processo"},
+      {"fasId":70,"nome":"Suspenso CQ","tipo":"erro"},
+      {"fasId":51,"nome":"Indexação Automática","tipo":"processo"},
+      {"fasId":71,"nome":"Suspenso Indexação","tipo":"erro"},
+      {"fasId":1,"nome":"Validação","tipo":"processo"},
+      {"fasId":73,"nome":"Suspenso Validação","tipo":"erro"},
+      {"fasId":16,"nome":"Verificação","tipo":"processo"},
+      {"fasId":14,"nome":"Suspenso","tipo":"erro"},
+      {"fasId":11,"nome":"Exportação","tipo":"processo"},
+      {"fasId":74,"nome":"Suspenso Exportação","tipo":"erro"},
+      {"fasId":12,"nome":"Finalizado","tipo":"terminal"}
+    ],
+  "grafo": {
+    "nos": [
+      {"fasId":50,"x":0,"y":1},
+      {"fasId":60,"x":1,"y":1},
+      {"fasId":7,"x":2,"y":1},
+      {"fasId":51,"x":3,"y":1},
+      {"fasId":1,"x":4,"y":1},
+      {"fasId":16,"x":5,"y":1},
+      {"fasId":11,"x":6,"y":1},
+      {"fasId":12,"x":7,"y":1},
+      {"fasId":68,"x":0,"y":2},
+      {"fasId":69,"x":1,"y":2},
+      {"fasId":70,"x":2,"y":2},
+      {"fasId":71,"x":3,"y":2},
+      {"fasId":73,"x":4,"y":2},
+      {"fasId":14,"x":5,"y":2},
+      {"fasId":74,"x":6,"y":2}
+    ],
+    "juncoes": [
+
+    ],
+    "arestas": [
+      {"de":50,"para":60},
+      {"de":60,"para":7},
+      {"de":7,"para":51},
+      {"de":51,"para":1},
+      {"de":1,"para":16},
+      {"de":16,"para":11},
+      {"de":11,"para":12},
+      {"de":50,"para":68,"erro":true},
+      {"de":60,"para":69,"erro":true},
+      {"de":7,"para":70,"erro":true},
+      {"de":51,"para":71,"erro":true},
+      {"de":1,"para":73,"erro":true},
+      {"de":16,"para":14,"erro":true},
+      {"de":11,"para":74,"erro":true}
+    ]
+  }
+}

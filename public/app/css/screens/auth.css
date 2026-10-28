@@ -1,0 +1,107 @@
+/* ==========================================================================
+   AUTENTICAÇÃO E FORMULÁRIOS DE CONTA — login, primeiro acesso, criar usuário, perfil
+   (design_system.md §9 e §12; frontend_screens.md §1–4)
+   ========================================================================== */
+
+/* ---------- camada de autenticação ---------- */
+.auth { position: relative; min-height: 100vh; display: grid; place-items: center; padding: 48px 16px 80px; overflow: hidden; }
+/* telas largas: título à esquerda, bloco de login à direita (como na versão antiga) */
+@media (min-width: 960px) {
+  .auth { grid-template-columns: minmax(0, 1fr) minmax(380px, 440px); column-gap: clamp(40px, 7vw, 120px); padding: 48px clamp(40px, 9vw, 160px) 80px; }
+  .auth .auth-hero { display: block; justify-self: start; }
+  .auth-col { justify-self: end; width: 100%; }
+}
+.auth-hero { display: none; position: relative; z-index: 1; max-width: 560px; }
+.auth-hero .titulo { font-size: clamp(40px, 4.6vw, 60px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.04; color: var(--fg); }
+.auth-hero .sub { margin-top: 18px; font-size: 17px; line-height: 1.5; color: var(--fg-2); max-width: 36ch; }
+.auth::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(600px 340px at 50% 18%, var(--accent-soft), transparent 70%), radial-gradient(900px 500px at 50% 120%, var(--accent-softer), transparent 70%); }
+.auth::after { content: ""; position: absolute; inset: 0; pointer-events: none; background-image: radial-gradient(var(--dot-strong) 1px, transparent 1.2px); background-size: 24px 24px;
+  -webkit-mask-image: radial-gradient(ellipse 60% 55% at 50% 40%, var(--mask-on) 20%, transparent 75%); mask-image: radial-gradient(ellipse 60% 55% at 50% 40%, var(--mask-on) 20%, transparent 75%); }
+.auth-top { position: absolute; top: 16px; left: 20px; right: 16px; display: flex; align-items: center; justify-content: space-between; z-index: 2; }
+.auth-top .brand { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--fg-2); }
+.auth-top .brand svg { width: 34px; height: auto; color: var(--fg); }
+.auth-col { position: relative; z-index: 1; width: min(400px, 100%); display: flex; flex-direction: column; gap: 14px; }
+.auth-card { padding: 30px 28px 24px; border-radius: 16px; background: color-mix(in srgb, var(--surface) 88%, transparent); border: 1px solid var(--border-2);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); box-shadow: var(--shadow-lg); display: flex; flex-direction: column; gap: 20px; }
+.auth-card.shake { animation: shake .45s var(--ease); }
+.auth-logo { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; background: var(--fg); color: var(--bg); }
+.auth-logo svg { width: 30px; height: auto; }
+.auth-logo .ic { font-size: 24px; }
+.auth-hd { display: flex; flex-direction: column; gap: 8px; }
+.auth-hd h1 { font-size: 22px; letter-spacing: -0.03em; }
+.auth-hd p { color: var(--fg-2); font-size: 13.5px; }
+.auth-form { display: flex; flex-direction: column; gap: 14px; }
+.form-err { display: flex; align-items: center; gap: 8px; padding: 9px 11px; border-radius: var(--r); background: var(--err-soft); color: var(--err); font-size: 12.5px; border: 1px solid color-mix(in srgb, var(--err) 25%, transparent); }
+.form-info { display: flex; align-items: center; gap: 8px; padding: 9px 11px; border-radius: var(--r); background: var(--info-soft); color: var(--info); font-size: 12.5px; border: 1px solid color-mix(in srgb, var(--info) 25%, transparent); }
+.auth-hint { font-size: 12px; color: var(--fg-3); text-align: center; line-height: 1.5; }
+.auth-foot { position: absolute; bottom: 16px; left: 0; right: 0; z-index: 1; display: flex; justify-content: center; gap: 14px; font: 11px var(--mono); color: var(--fg-3); letter-spacing: .04em; }
+
+/* ---------- log de etapas (estilo deploy) ---------- */
+.dlog { border: 1px solid var(--border-2); border-radius: var(--r-lg); background: color-mix(in srgb, var(--bg) 70%, var(--surface)); overflow: hidden; font: 12px/1.5 var(--mono); font-variant-numeric: tabular-nums; animation: rise .4s var(--ease) both; }
+.dlog-h { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border-bottom: 1px solid var(--border); color: var(--fg-3); font-size: 11px; letter-spacing: .04em; gap: 10px; }
+.dlog-h .st { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.dlog-h .st i { width: 7px; height: 7px; border-radius: 50%; background: var(--warn); }
+.dlog-h .st.ok i { background: var(--ok); } .dlog-h .st.err i { background: var(--err); }
+.dlog-b { padding: 8px 0; }
+.dl { display: grid; grid-template-columns: 54px minmax(0, 1fr) auto 16px; gap: 8px; align-items: center; padding: 2px 12px; color: var(--fg-2); animation: logline .3s var(--ease) both; }
+.dl .ts { color: var(--fg-3); font-size: 11px; }
+.dl .tx { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dl .ms { color: var(--fg-3); font-size: 11px; }
+.dl .ic-s { display: grid; place-items: center; justify-self: end; font-weight: 600; }
+.dl .ic-s .spin { width: 11px; height: 11px; color: var(--accent-text); }
+.dl .ic-s .ic { font-size: 12px; }
+.dl.ok .ic-s { color: var(--ok); } .dl.ok .tx { color: var(--fg); }
+.dl.aviso .ic-s, .dl.aviso .tx { color: var(--warn); }
+.dl.erro .ic-s, .dl.erro .tx, .dl.erro .ms { color: var(--err); }
+.dl.erro .tx { white-space: normal; }
+.dl.nota .tx { color: var(--fg-3); }
+
+/* ---------- medidor de força e checklist ---------- */
+.pw-meter { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+.pw-meter i { height: 4px; border-radius: 3px; background: var(--surface-3); transition: background var(--d3); }
+.pw-meter[data-n="1"] i:nth-child(-n+1) { background: var(--err); }
+.pw-meter[data-n="2"] i:nth-child(-n+2) { background: var(--warn); }
+.pw-meter[data-n="3"] i:nth-child(-n+3) { background: var(--info); }
+.pw-meter[data-n="4"] i { background: var(--ok); }
+.pw-rotulo { font-size: 12px; color: var(--fg-3); min-height: 16px; }
+.pw-checks { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px; font-size: 12px; color: var(--fg-3); }
+.pw-checks span { display: flex; align-items: center; gap: 6px; transition: color var(--d2); }
+.pw-checks span.ok { color: var(--ok); }
+.pw-checks .ic { font-size: 13px; }
+.pw-igual { font-size: 12px; min-height: 16px; display: flex; align-items: center; gap: 5px; }
+.pw-igual.ok { color: var(--ok); } .pw-igual.nao { color: var(--err); }
+
+/* ---------- ícone de sucesso ---------- */
+.app-ok { width: 76px; height: 76px; border-radius: 50%; display: grid; place-items: center; margin: 24px auto 4px; background: var(--ok-soft); color: var(--ok); animation: pop .6s var(--spring) both; }
+.app-ok .ic { font-size: 40px; }
+.app-ok.accent { background: var(--accent-soft); color: var(--accent-text); }
+
+/* ---------- formulários de conta (criar usuário, perfil) ---------- */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-grid .full { grid-column: 1 / -1; }
+.success-hero { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; padding: 26px 10px 8px; }
+.success-hero .app-ok { margin: 0; }
+.success-hero p { color: var(--fg-2); font-size: 13.5px; max-width: 46ch; }
+.copy-row { display: flex; align-items: center; gap: 8px; padding: 6px 6px 6px 12px; border: 1px solid var(--border-2); border-radius: var(--r); background: var(--surface-2); font: 13px var(--mono); }
+.copy-row .grow { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.role-opt .ic { font-size: 20px; }
+.perfil-id { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.perfil-id h2 { font-size: 20px; letter-spacing: -0.025em; }
+.kv-lista { display: flex; flex-direction: column; width: 100%; }
+.kv-lista > div { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--fg-2); }
+.kv-lista > div:last-child { border-bottom: 0; }
+.kv-lista b { font-weight: 500; color: var(--fg); }
+
+@container (max-width: 620px) {
+  .form-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .auth-card { padding: 24px 20px 20px; }
+}
+
+/* Meu perfil: edição do nome */
+.nome-area { margin-top: 4px; }
+.nome-form { display: flex; flex-direction: column; gap: 6px; width: 100%; max-width: 320px; }
+.nome-acoes { display: flex; gap: 8px; }

@@ -1,0 +1,28 @@
+/* Caixas ao vivo — #/operacional/caixas. Selos e botões vêm de operacional.css. */
+.cxop-aviso { margin: 0 0 12px; padding: 10px 14px; border-radius: var(--r-md); font-size: 13px; color: var(--warn); background: var(--warn-soft); }
+.cxop-resumo { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.cxop-num { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--border-2); border-radius: var(--r-lg); }
+.cxop-num b { font-family: var(--mono); font-size: 28px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+.cxop-num span { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--fg-3); }
+.cxop-num.err b { color: var(--err); }
+.cxop-filtros { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 16px; }
+.cxop-filtros .input { width: 320px; max-width: 100%; }
+.cxop-bloco { margin-bottom: 20px; }
+.cxop-bloco > h2 { display: flex; align-items: center; gap: 8px; margin: 0 0 12px; font-size: 12.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--fg-3); }
+.cxop-grade { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 12px; }
+.cxop-card { display: flex; flex-direction: column; gap: 10px; padding: 14px 16px; background: var(--surface); background-image: var(--card-sheen); border: 1px solid var(--border-2); border-radius: var(--r-lg); }
+.cxop-card.pausada { border-style: dashed; border-color: var(--warn); }
+.cxop-card.pendente { border-color: var(--err); }
+.cxop-topo { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.cxop-cod { font-family: var(--mono); font-size: 16px; font-weight: 600; overflow-wrap: anywhere; }
+.cxop-etapa { font-size: 12.5px; color: var(--fg-3); white-space: nowrap; }
+.cxop-quem { font-size: 14px; color: var(--fg-2); overflow-wrap: anywhere; }
+.cxop-tempo { font-family: var(--mono); font-size: 26px; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1; }
+.cxop-card.pausada .cxop-tempo { color: var(--warn); }
+.cxop-selos { display: flex; flex-wrap: wrap; gap: 6px; }
+.cxop-selos .op-chip { font-size: 12.5px; padding: 3px 9px; }
+.cxop-lista { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.cxop-linha { display: grid; grid-template-columns: minmax(120px, 1.1fr) minmax(120px, 1.3fr) auto minmax(0, 2fr) 96px; align-items: center; gap: 12px; padding: 10px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); font-size: 13.5px; }
+.cxop-linha .cxop-hora { font-family: var(--mono); color: var(--fg-3); text-align: right; font-size: 12.5px; }
+@media (max-width: 860px) { .cxop-linha { grid-template-columns: 1fr auto; } .cxop-linha .cxop-selos { grid-column: 1 / -1; } }
+.op-seg .btn[aria-pressed="true"] { color: var(--accent-text); background: var(--accent-soft); box-shadow: inset 0 0 0 1px var(--accent-ring); }

@@ -1,0 +1,17 @@
+# dependências
+node_modules/
+
+# segredos: cada serviço tem o seu .env.example; o .env de verdade nunca entra no git
+*.env
+.env
+
+# E2E (Playwright)
+tests/e2e/test-results/
+tests/e2e/playwright-report/
+.playwright-mcp/
+
+# editor
+.vscode/
+
+# contexto privado da construção do showcase (cita nomes reais; NUNCA publicar)
+.contexto/

@@ -1,0 +1,64 @@
+name: Deploy back_dashboard
+
+# Deploy do back_dashboard (API única do painel — services/back_dashboard/).
+#
+# Esta esteira não usa container (o back_atlas, Docker/GHCR/Traefik e o runner
+# da máquina backatlas foram removidos). A VM vm-painel roda Node direto via systemd
+# (services/back_dashboard/systemd/back-dashboard.service), então o runner
+# self-hosted (rodando nessa mesma VM) opera direto sobre o clone existente
+# em /opt/dashboard: git reset --hard na última main, npm ci, restart do
+# serviço. Sem imagem, sem registry — rollback é reverter o commit em main
+# (ou workflow_dispatch numa branch/tag anterior) e deixar rodar de novo.
+#
+# Setup do runner (usuário dedicado, sudoers restrito, registro do runner):
+# docs/arquitetura/ci-cd.md, Parte E. Decisão registrada em
+# docs/arquitetura/ci-cd.md, seção 9.
+#
+# Atenção: o `reset --hard` descarta qualquer edição feita à mão em
+# /opt/dashboard fora do git — esse diretório passa a ser gerenciado só por
+# este pipeline, não é mais lugar de ajuste manual "rápido" na VM.
+
+on:
+  # No showcase o deploy é só manual e exige um runner self-hosted na VM. Em produção ele roda
+  # a cada push na main que mexe em services/back_dashboard/**.
+  workflow_dispatch: {}
+
+# Menor privilégio (OPS-05): o deploy só lê o repositório.
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, linux, dashboard]
+    environment: production-dashboard
+    steps:
+      - name: Confiar em /opt/dashboard (dono do diretório != usuário do runner)
+        # Desde a correção do CVE-2022-24765, o git recusa operar num
+        # repositório cujo dono do diretório não é o usuário atual — e esta
+        # esteira roda `git -C /opt/dashboard` direto (sem `actions/checkout`,
+        # que já cuidaria disso sozinho), contra um clone de longa duração
+        # mantido por outro usuário na VM (ver cabeçalho do arquivo). Caminho
+        # exato (não um curinga `*`) — é o único diretório em que este runner
+        # precisa confiar, nada mais.
+        run: |
+          git config --global --get-all safe.directory 2>/dev/null | grep -qx /opt/dashboard \
+            || git config --global --add safe.directory /opt/dashboard
+
+      - name: Atualizar /opt/dashboard para a main mais recente
+        run: |
+          git -C /opt/dashboard fetch --quiet origin main
+          git -C /opt/dashboard reset --hard origin/main
+
+      - name: Instalar dependências
+        working-directory: /opt/dashboard/services/back_dashboard
+        run: npm ci
+
+      - name: Reiniciar back-dashboard
+        run: sudo systemctl restart back-dashboard
+
+      - name: Verificar saúde do serviço
+        # Direto na porta local (127.0.0.1:3010, ver systemd/back-dashboard.service), não pela
+        # URL pública: de dentro da VM, painel.example.com resolve para o IP público da rede e
+        # cai num certificado de outro site (curl exit 60), o que reprovava o deploy mesmo com
+        # o serviço saudável. A rota pública é testada de fora, pelos E2E/uso.
+        run: curl -fsS --retry 5 --retry-delay 2 --retry-connrefused http://127.0.0.1:3010/api/health

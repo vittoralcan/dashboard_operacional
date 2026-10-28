@@ -1,0 +1,59 @@
+name: Verificar backend
+
+# Verificação do back_dashboard e da suíte de aceite. Roda em todo PR que mexe no backend, nos testes ou nas dependências.
+# O back_dashboard usa um Postgres de serviço descartável (PG_TESTE_URL) com as tabelas do Bridge aplicadas. Nada aqui faz deploy.
+
+on:
+  pull_request:
+    paths:
+      - 'services/back_dashboard/**'
+      - 'tests/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/verificar-backend.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    name: Back dashboard e aceite
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: painel_teste
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      PG_TESTE_URL: postgres://postgres:postgres@localhost:5432/painel_teste
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Instalar dependências do back_dashboard
+        working-directory: services/back_dashboard
+        run: npm ci
+      - name: Instalar dependências do back_auth
+        working-directory: services/back_auth
+        run: npm ci
+      - name: Aplicar o DDL do Bridge no banco de teste (sem SET ROLE)
+        run: |
+          sed '/ROLE/d' services/back_dashboard/ops/01-db-dashboard-envio.sql > /tmp/01-db-dashboard-envio.sql
+          psql "$PG_TESTE_URL" -v ON_ERROR_STOP=1 -c 'CREATE SCHEMA IF NOT EXISTS painel;'
+          psql "$PG_TESTE_URL" -v ON_ERROR_STOP=1 -f /tmp/01-db-dashboard-envio.sql
+      - name: Testes do back_dashboard
+        working-directory: services/back_dashboard
+        run: npm test
+      - name: Testes de aceite
+        run: npm run test:aceite

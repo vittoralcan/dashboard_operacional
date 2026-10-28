@@ -1,0 +1,42 @@
+/* ==========================================================================
+   HIGIENIZAÇÃO — listas, ranking, mesas e botões de relatório (frontend_screens.md §12)
+   ========================================================================== */
+.list-scroll { max-height: 290px; overflow-y: auto; margin: 0 -6px; padding: 0 6px; }
+.list-scroll:focus-visible, .mesas:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: var(--r); }
+.row-i.cab { padding-top: 0; }
+.fin-row { grid-template-columns: minmax(0, 1fr) auto; }
+.cx-row { grid-template-columns: minmax(0, 1fr) auto 26px; }
+.row-i.cab.cx-row { grid-template-columns: minmax(0, 1fr) auto 26px; }
+.cx-row .cx { font: 500 12.5px var(--mono); color: var(--fg); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cx-row .mesa-n { font: 12px var(--font); color: var(--fg-3); }
+.cx-row .hr { font: 12px var(--mono); color: var(--fg-2); }
+.rank-row { grid-template-columns: 44px minmax(0, 1fr) 70px; }
+.rank-row .n { font: 600 15px var(--mono); font-variant-numeric: tabular-nums; color: var(--fg); }
+.rank-row:first-child .n { color: var(--accent-text); }
+.rank-row .nm { font-size: 13px; color: var(--fg-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; align-items: center; }
+.rank-row .nm small { font: 10.5px var(--mono); color: var(--fg-3); margin-left: 6px; }
+.rank-row .bar { height: 4px; border-radius: 2px; background: var(--surface-3); overflow: hidden; }
+.rank-row .bar i { display: block; height: 100%; background: var(--fg-3); }
+.rank-row:first-child .bar i { background: var(--accent); }
+
+.mesas { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; scroll-snap-type: x proximity; }
+.mesa { flex: 0 0 260px; scroll-snap-align: start; border: 1px solid var(--border-2); border-radius: var(--r-lg); background: var(--surface-2); padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+.mesa.nova { border-style: dashed; align-items: center; justify-content: center; color: var(--fg-3); gap: 8px; min-height: 160px; }
+.mesa.nova .ic { font-size: 22px; }
+.mesa.flash { animation: flash 1.2s var(--ease); }
+.mesa-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.mesa-h b { font: 600 13px var(--mono); }
+.mesa-cx { display: flex; flex-direction: column; gap: 6px; max-height: 190px; overflow-y: auto; }
+.mesa-cx > div { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 6px 8px; border-radius: 7px; background: var(--surface); border: 1px solid var(--border); font-size: 12px; }
+.mesa-cx .mono { font-size: 11.5px; color: var(--fg); overflow: hidden; text-overflow: ellipsis; }
+.mesa-cx .s { font-size: 11px; color: var(--fg-2); white-space: nowrap; }
+.mesa-cx .s.open { color: var(--info); }
+.mesa-cx .s.fin { color: var(--ok); }
+.mesa-cx .mesa-empty { justify-content: center; font-size: 12px; color: var(--fg-3); padding: 14px 0; border: 1px dashed var(--border-2); background: transparent; }
+.export-btns { display: grid; gap: 8px; }
+.export-btn { display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: var(--r-lg); border: 1px solid var(--border-2); background: var(--surface-2); text-align: left; transition: border-color var(--d1), background var(--d1); }
+.export-btn:hover { border-color: var(--accent); background: var(--surface); }
+.export-btn .ico-tile { width: 32px; height: 32px; }
+.export-btn b { display: block; font-size: 13px; font-weight: 600; }
+.export-btn span span { display: block; font-size: 12px; color: var(--fg-3); }
+.export-btn > .ic:last-child { margin-left: auto; color: var(--fg-3); }

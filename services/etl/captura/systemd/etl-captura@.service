@@ -1,0 +1,39 @@
+# Um ciclo do ETL Captura para a fonte %i (hoje só atlas). Disparado pelo timer de mesmo nome.
+#
+# Instalação (uma vez, na VM):
+#   sudo useradd --system --no-create-home --shell /usr/sbin/nologin etl
+#   sudo cp etl-captura@.service etl-captura@.timer /etc/systemd/system/
+#   sudo install -d -m 755 /etc/dashboard
+#   sudo install -m 600 -o root atlas.env /etc/dashboard/etl-captura-atlas.env
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now etl-captura@atlas.timer
+#
+# Operação:
+#   systemctl list-timers 'etl-captura@*'       última/próxima execução
+#   journalctl -u etl-captura@atlas -n 50        log dos últimos ciclos
+#   sudo systemctl start etl-captura@atlas       roda um ciclo agora
+
+[Unit]
+Description=ETL Captura -> db_espelho (fonte %i)
+Wants=network-online.target
+After=network-online.target postgresql.service
+
+[Service]
+Type=oneshot
+User=etl
+Group=etl
+# Lido pelo systemd antes de trocar de usuário: o arquivo pode (e deve) ser só do root.
+EnvironmentFile=/etc/dashboard/etl-captura-%i.env
+# Ajustar se o clone do repositório ou o Node (which node) estiverem em outro caminho.
+WorkingDirectory=/opt/dashboard/services/etl/captura
+ExecStart=/usr/bin/node app.js
+# Um ciclo normal leva segundos; acima disso algo travou — o systemd mata e o próximo
+# disparo do timer tenta de novo. O registro fica como "interrompido" em etl.execucao.
+TimeoutStartSec=8min
+MemoryMax=512M
+Nice=10
+
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true

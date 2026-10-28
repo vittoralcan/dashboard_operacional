@@ -1,0 +1,5 @@
+/* Estilos só do catálogo de componentes (#/_ui, desenvolvimento). Não faz parte das telas. */
+.linha-demo { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.sw { display: flex; align-items: center; gap: 10px; font-size: 11.5px; color: var(--fg-2); }
+.sw-c { width: 30px; height: 30px; border-radius: 8px; border: 1px solid var(--border-3); flex: none; }

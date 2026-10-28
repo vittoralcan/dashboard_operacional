@@ -1,0 +1,12 @@
+# Agenda etl-captura@<fonte>.service a cada 10 minutos (:00, :10, :20...).
+# Se o ciclo anterior ainda estiver rodando no próximo disparo, o systemd não inicia outro.
+
+[Unit]
+Description=Agenda o ETL Captura (fonte %i) a cada 10 minutos
+
+[Timer]
+OnCalendar=*:0/10
+AccuracySec=5s
+
+[Install]
+WantedBy=timers.target

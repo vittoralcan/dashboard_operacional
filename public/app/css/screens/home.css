@@ -1,0 +1,113 @@
+/* Seleção de projetos (#/projetos) e hubs BOREAL e ATLAS — frontend_screens.md §5–7. Só tokens (nada de cor fixa). */
+.greet-date { font: 500 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--fg-3); }
+.page-h .acts .ajuda { width: 40px; height: 40px; }
+.help-pop { width: 320px; max-width: calc(100vw - 16px); padding: 14px; font-size: 13px; color: var(--fg-2); line-height: 1.5; }
+.help-pop b { color: var(--fg); }
+.help-acao { margin-top: 10px; }
+
+/* Cartão de projeto */
+.proj-card { min-height: 360px; gap: 16px; }
+.proj-top { display: flex; align-items: flex-start; gap: 14px; }
+.proj-top .nm { flex: 1; min-width: 0; }
+.proj-top h2 { font-size: 26px; letter-spacing: -0.04em; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.proj-top p { color: var(--fg-2); font-size: 13px; margin-top: 4px; }
+.proj-go { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--border-2); color: var(--fg-2); transition: transform var(--d3) var(--spring), background var(--d2), color var(--d2), border-color var(--d2); }
+.card.link:hover .proj-go { transform: translate(2px, -2px); background: var(--fg); color: var(--bg); border-color: transparent; }
+.proj-kpi { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.proj-kpi .l { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.proj-var { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-height: 22px; }
+.proj-spark { width: 42%; min-width: 160px; display: flex; flex-direction: column; gap: 4px; }
+.proj-spark [data-k="spark"] { min-height: 64px; }
+.proj-f { flex-direction: column; align-items: stretch; gap: 12px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { height: 28px; padding: 0 10px; border-radius: 7px; display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; color: var(--fg-2); border: 1px solid var(--border-2); background: var(--surface-2); transition: color var(--d1), border-color var(--d1); }
+.chip:hover { color: var(--fg); border-color: var(--border-3); }
+.chip .ic { font-size: 14px; }
+.chip .mono { font-size: 11px; color: var(--fg-3); }
+
+/* COBALTO desabilitado */
+.soon-card { background: repeating-linear-gradient(135deg, transparent 0 8px, var(--hover) 8px 9px), var(--surface); }
+.soon-nm { font-size: 18px; }
+.soon-tx { font-size: 12.5px; margin-top: 6px; line-height: 1.45; }
+
+/* Os 4 tiles "hoje" entram direto na grade do bento. */
+.tiles-hoje { display: contents; }
+.tile-un { margin-top: 4px; }
+
+/* Cartões de módulo e de fluxo dos hubs */
+.mod-nm { font-size: 17px; letter-spacing: -0.02em; }
+.mod-sub { font-size: 12.5px; margin-top: 3px; }
+.kpi-un { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+.mod-spark { display: flex; flex-direction: column; gap: 4px; }
+.mod-spark [data-k="spark"] { min-height: 40px; }
+.meta-lin { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; flex-wrap: wrap; }
+.selos { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.fluxo-f { flex-direction: column; align-items: stretch; gap: 8px; }
+.uptime-mini { display: flex; gap: 2px; height: 26px; align-items: stretch; }
+.uptime-mini i { flex: 1; border-radius: 2px; background: var(--ok); opacity: .85; }
+.uptime-mini i.f { background: var(--err); }
+
+/* Hub ATLAS */
+.como-tx { color: var(--fg-2); font-size: 13.5px; line-height: 1.6; max-width: 640px; }
+.como-tx b { color: var(--fg); }
+.como-selo { margin: 0 4px; }
+
+@media (max-width: 760px) {
+  .proj-card { min-height: 0; }
+  .proj-spark { width: 100%; }
+}
+
+/* Com a barra lateral aberta o conteúdo fica < 1180 px: "Gargalos" faz par com o COBALTO e "Atividade" ocupa a linha (os 4 tiles ficam 2 × 2). */
+@container (max-width: 1180px) {
+  .bento > .gargalos { grid-column: span 6; }
+  .bento > .atividade-home { grid-column: span 12; }
+}
+@container (max-width: 900px) {
+  .bento > .gargalos { grid-column: span 12; }
+}
+
+/* Blocos de dados do backend novo: gargalos, atividade, metas do mês */
+.bloco-txt { font-size: 12.5px; }
+.bloco-ok { display: flex; align-items: center; gap: 10px; color: var(--fg-3); font-size: 13px; flex-wrap: wrap; padding: 6px 0; }
+.bloco-ok .ic { font-size: 18px; color: var(--ok); }
+.meta-def { color: var(--accent-text); font-size: 12.5px; text-decoration: underline; text-underline-offset: 2px; }
+.meta-slot { width: 100%; display: flex; flex-direction: column; gap: 6px; }
+.var-slot { display: inline-flex; align-items: center; gap: 6px; }
+.gargalo-i { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; padding: 9px 0; border-bottom: 1px solid var(--border); }
+.gargalo-i:last-child { border-bottom: 0; }
+.gargalo-i[role="link"] { cursor: pointer; }
+.gargalo-i[role="link"]:hover .nm { color: var(--accent-text); }
+.gargalo-i .nm { font-size: 13px; font-weight: 500; transition: color var(--d1); }
+.gargalo-i .wh { font-size: 12px; color: var(--fg-3); }
+.gargalo-i .v { grid-row: span 2; align-self: center; text-align: right; font: 600 15px var(--mono); }
+.gargalo-i .v small { display: block; font: 400 10.5px var(--mono); color: var(--fg-3); }
+.gargalo-i:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.metas-lista { display: flex; flex-direction: column; gap: 14px; }
+.meta-anel { display: flex; align-items: center; gap: 14px; }
+.anel-w { position: relative; width: 54px; height: 54px; flex: none; }
+.anel-w .mono { position: absolute; inset: 0; display: grid; place-items: center; font-size: 11px; }
+.anel-tx { flex: 1; min-width: 0; }
+.anel-tx b { font-size: 13.5px; font-weight: 500; }
+
+/* Tela de metas mensais (admin) */
+.mes-nav { align-items: center; }
+.mes-rot { min-width: 150px; justify-content: center; }
+.metas-tab { display: flex; flex-direction: column; }
+.metas-cab, .metas-lin { display: grid; grid-template-columns: minmax(180px, 2fr) minmax(120px, 1fr) minmax(160px, 1.2fr) auto; gap: 16px; align-items: center; padding: 12px 4px; }
+.metas-cab { font: 500 10.5px var(--mono); letter-spacing: .09em; text-transform: uppercase; color: var(--fg-3); border-bottom: 1px solid var(--border); padding-top: 4px; }
+.metas-lin { border-bottom: 1px solid var(--border); }
+.metas-lin:last-of-type { border-bottom: 0; }
+.metas-nm { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.metas-nm b { font-weight: 500; display: block; }
+.metas-nm small { color: var(--fg-3); font-size: 12px; }
+.metas-atual { font-size: 13px; }
+.metas-campo { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.metas-nota { margin-top: 10px; display: flex; gap: 8px; align-items: center; }
+@media (max-width: 760px) {
+  .metas-cab { display: none; }
+  .metas-lin { grid-template-columns: 1fr auto; }
+  .metas-nm { grid-column: 1 / -1; }
+  .metas-atual { grid-column: 1 / -1; }
+}
+.uptime-mini i.l { background: var(--warn); }

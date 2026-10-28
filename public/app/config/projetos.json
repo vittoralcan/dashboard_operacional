@@ -1,0 +1,27 @@
+{
+  "projetos": [
+    {
+      "id": "boreal", "sigla": "BOREAL", "nome": "Fundação Boreal — Rede Nacional", "status": "ativo", "icone": "buildings",
+      "rota": "/boreal/monitoramento", "atalho": "G S",
+      "modulos": [
+        { "id": "monitoramento", "nome": "Monitoramento de APIs", "sub": "Inscrição Online", "icone": "pulse", "rota": "/boreal/monitoramento", "atalho": "G O" }
+      ],
+      "fluxos": []
+    },
+    {
+      "id": "atlas", "sigla": "ATLAS", "nome": "Arquivo Estadual de Atlântida", "status": "ativo", "icone": "bank",
+      "rota": "/atlas", "atalho": "G E",
+      "modulos": [],
+      "fluxos": [
+        { "id": "negativos", "nome": "Negativos", "sub": "Captura", "grupo": "Negativos", "icone": "film-reel", "rota": "/atlas/negativos", "aValidar": false },
+        { "id": "certidoes", "nome": "Certidões", "sub": "Captura", "grupo": "Papel", "icone": "files", "rota": "/atlas/certidoes", "aValidar": false },
+        { "id": "inventarios", "nome": "Inventários", "sub": "Captura", "grupo": "Papel", "icone": "folder-simple", "rota": "/atlas/inventarios", "aValidar": true },
+        { "id": "cartografia", "nome": "Cartografia", "sub": "Captura", "grupo": "Papel", "icone": "first-aid-kit", "rota": "/atlas/cartografia", "aValidar": false }
+      ]
+    },
+    {
+      "id": "cobalto", "sigla": "COBALTO", "nome": "Conselho Cobalto de Arquivos", "status": "em-breve", "icone": "lock-simple",
+      "rota": "/cobalto", "modulos": [], "fluxos": []
+    }
+  ]
+}

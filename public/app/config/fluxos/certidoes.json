@@ -1,0 +1,58 @@
+{
+  "instancia": "certidoes", "projeto": "ATLAS", "nome": "Certidões", "sub": "ATLAS · Captura · Papel",
+  "rota": "/atlas/certidoes", "fonte": "atlas", "aValidar": false, "faseFinal": 12,
+  "passo": {"cw":200,"ch":130,"nw":164,"nh":92},
+  "gestaoColunas": [{"fasId":3,"titulo":"Digitalização"},{"fasId":7,"titulo":"Controle de Qualidade"},{"fasId":12,"titulo":"Finalizados"}],
+  "fases": [
+      {"fasId":3,"nome":"Digitalização (Scanner)","tipo":"entrada"},
+      {"fasId":68,"nome":"Suspenso Importação","tipo":"erro"},
+      {"fasId":7,"nome":"Controle de Qualidade","tipo":"processo"},
+      {"fasId":93,"nome":"CQ 2","tipo":"reprocessamento"},
+      {"fasId":70,"nome":"Suspenso CQ","tipo":"erro"},
+      {"fasId":51,"nome":"Indexação Automática","tipo":"processo"},
+      {"fasId":71,"nome":"Suspenso Indexação","tipo":"erro"},
+      {"fasId":11,"nome":"Exportação","tipo":"processo"},
+      {"fasId":74,"nome":"Suspenso Exportação","tipo":"erro"},
+      {"fasId":12,"nome":"Finalizado","tipo":"terminal"},
+      {"fasId":109,"nome":"Aguardando","tipo":"espera"}
+    ],
+  "grafo": {
+    "nos": [
+      {"fasId":3,"x":0,"y":0},
+      {"fasId":7,"x":1,"y":1},
+      {"fasId":51,"x":3,"y":1},
+      {"fasId":11,"x":5,"y":1},
+      {"fasId":12,"x":7,"y":1},
+      {"fasId":68,"x":0,"y":2},
+      {"fasId":93,"x":2,"y":2},
+      {"fasId":71,"x":4,"y":2},
+      {"fasId":74,"x":6,"y":2},
+      {"fasId":70,"x":3,"y":3},
+      {"fasId":109,"x":7,"y":3}
+    ],
+    "juncoes": [
+      {"id":"J1","x":0,"y":1},
+      {"id":"J3","x":2,"y":1},
+      {"id":"J4","x":4,"y":1},
+      {"id":"J5","x":6,"y":1},
+      {"id":"J6","x":3,"y":2}
+    ],
+    "arestas": [
+      {"de":3,"para":"J1"},
+      {"de":"J1","para":7},
+      {"de":7,"para":"J3"},
+      {"de":"J3","para":51},
+      {"de":93,"para":"J6"},
+      {"de":"J6","para":51},
+      {"de":51,"para":"J4"},
+      {"de":"J4","para":11},
+      {"de":11,"para":"J5"},
+      {"de":"J5","para":12},
+      {"de":"J1","para":68,"erro":true},
+      {"de":"J3","para":93,"erro":true},
+      {"de":"J6","para":70,"erro":true},
+      {"de":"J4","para":71,"erro":true},
+      {"de":"J5","para":74,"erro":true}
+    ]
+  }
+}

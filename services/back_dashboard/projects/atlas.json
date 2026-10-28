@@ -1,0 +1,325 @@
+{
+  "projectId": "atlas",
+  "displayName": "ATLAS",
+  "modules": [
+    {
+      "moduleId": "base/flow-viewer",
+      "instanceId": "negativos",
+      "config": {
+        "fonte": "atlas",
+        "fluId": 4,
+        "visualStyle": "gradient-diagonal",
+        "faseFinal": 12,
+        "lotesIgnorados": ["teste"],
+        "kpiFases": [7, 16, 12],
+        "macroView": { "fasId": 50 },
+        "fases": [
+          { "fasId": 50, "nome": "Importação", "tipo": "entrada" },
+          { "fasId": 68, "nome": "Suspenso Importação", "tipo": "erro" },
+          { "fasId": 60, "nome": "Controle de Qualidade Automático", "tipo": "processo" },
+          { "fasId": 69, "nome": "Suspenso CQ Automático", "tipo": "erro" },
+          { "fasId": 7, "nome": "Controle de Qualidade", "tipo": "processo" },
+          { "fasId": 70, "nome": "Suspenso CQ", "tipo": "erro" },
+          { "fasId": 51, "nome": "Indexação Automático", "tipo": "processo" },
+          { "fasId": 71, "nome": "Suspenso Indexação Automática", "tipo": "erro" },
+          { "fasId": 1, "nome": "Validação", "tipo": "processo" },
+          { "fasId": 73, "nome": "Suspenso Validação", "tipo": "erro" },
+          { "fasId": 16, "nome": "Verificação", "tipo": "processo" },
+          { "fasId": 14, "nome": "Suspenso", "tipo": "erro" },
+          { "fasId": 11, "nome": "Exportação", "tipo": "processo" },
+          { "fasId": 74, "nome": "Suspenso Exportação", "tipo": "erro" },
+          { "fasId": 12, "nome": "Finalizado", "tipo": "terminal" }
+        ],
+        "apresentacao": {
+          "nome": "Negativos",
+          "sub": "Negativos · Digitalização",
+          "grupo": { "id": "negativos", "nome": "Negativos" },
+          "aValidar": false,
+          "passo": { "cw": 200, "ch": 130, "nw": 164, "nh": 92 }
+        },
+        "gestaoColunas": [
+          { "fasId": 7, "titulo": "Controle de Qualidade" },
+          { "fasId": 16, "titulo": "Verificação" },
+          { "fasId": 12, "titulo": "Finalizado" }
+        ],
+        "grafo": {
+          "nos": [
+            { "fasId": 50, "x": 0, "y": 1 },
+            { "fasId": 60, "x": 1, "y": 1 },
+            { "fasId": 7, "x": 2, "y": 1 },
+            { "fasId": 51, "x": 3, "y": 1 },
+            { "fasId": 1, "x": 4, "y": 1 },
+            { "fasId": 16, "x": 5, "y": 1 },
+            { "fasId": 11, "x": 6, "y": 1 },
+            { "fasId": 12, "x": 7, "y": 1 },
+            { "fasId": 68, "x": 0, "y": 2 },
+            { "fasId": 69, "x": 1, "y": 2 },
+            { "fasId": 70, "x": 2, "y": 2 },
+            { "fasId": 71, "x": 3, "y": 2 },
+            { "fasId": 73, "x": 4, "y": 2 },
+            { "fasId": 14, "x": 5, "y": 2 },
+            { "fasId": 74, "x": 6, "y": 2 }
+          ],
+          "juncoes": [],
+          "arestas": [
+            { "de": 50, "para": 60 },
+            { "de": 60, "para": 7 },
+            { "de": 7, "para": 51 },
+            { "de": 51, "para": 1 },
+            { "de": 1, "para": 16 },
+            { "de": 16, "para": 11 },
+            { "de": 11, "para": 12 },
+            { "de": 50, "para": 68, "erro": true },
+            { "de": 60, "para": 69, "erro": true },
+            { "de": 7, "para": 70, "erro": true },
+            { "de": 51, "para": 71, "erro": true },
+            { "de": 1, "para": 73, "erro": true },
+            { "de": 16, "para": 14, "erro": true },
+            { "de": 11, "para": 74, "erro": true }
+          ]
+        }
+      }
+    },
+    {
+      "moduleId": "base/flow-viewer",
+      "instanceId": "certidoes",
+      "config": {
+        "fonte": "atlas",
+        "fluId": 8,
+        "visualStyle": "flat-orthogonal",
+        "faseFinal": 12,
+        "lotesIgnorados": ["teste"],
+        "kpiFases": [3, 7, 12],
+        "macroView": { "fasId": 3 },
+        "fases": [
+          { "fasId": 3, "nome": "Digitalização (Scanner)", "tipo": "entrada" },
+          { "fasId": 68, "nome": "Suspenso Importação", "tipo": "erro" },
+          { "fasId": 7, "nome": "Controle de Qualidade", "tipo": "processo" },
+          { "fasId": 93, "nome": "CQ 2", "tipo": "reprocessamento" },
+          { "fasId": 70, "nome": "Suspenso CQ", "tipo": "erro" },
+          { "fasId": 51, "nome": "Indexação Automática", "tipo": "processo" },
+          { "fasId": 71, "nome": "Suspenso Indexação Automática", "tipo": "erro" },
+          { "fasId": 11, "nome": "Exportação", "tipo": "processo" },
+          { "fasId": 74, "nome": "Suspenso Exportação", "tipo": "erro" },
+          { "fasId": 12, "nome": "Finalizado", "tipo": "terminal" },
+          { "fasId": 109, "nome": "Aguardando", "tipo": "espera" }
+        ],
+        "apresentacao": {
+          "nome": "Certidões",
+          "sub": "Papel · Digitalização",
+          "grupo": { "id": "papel", "nome": "Papel" },
+          "aValidar": false,
+          "passo": { "cw": 200, "ch": 130, "nw": 164, "nh": 92 }
+        },
+        "gestaoColunas": [
+          { "fasId": 3, "titulo": "Digitalização (Scanner)" },
+          { "fasId": 7, "titulo": "Controle de Qualidade" },
+          { "fasId": 12, "titulo": "Finalizado" }
+        ],
+        "grafo": {
+          "nos": [
+            { "fasId": 3, "x": 0, "y": 0 },
+            { "fasId": 7, "x": 1, "y": 1 },
+            { "fasId": 51, "x": 3, "y": 1 },
+            { "fasId": 11, "x": 5, "y": 1 },
+            { "fasId": 12, "x": 7, "y": 1 },
+            { "fasId": 68, "x": 0, "y": 2 },
+            { "fasId": 93, "x": 2, "y": 2 },
+            { "fasId": 71, "x": 4, "y": 2 },
+            { "fasId": 74, "x": 6, "y": 2 },
+            { "fasId": 70, "x": 3, "y": 3 },
+            { "fasId": 109, "x": 7, "y": 3 }
+          ],
+          "juncoes": [
+            { "id": "J1", "x": 0, "y": 1 },
+            { "id": "J3", "x": 2, "y": 1 },
+            { "id": "J4", "x": 4, "y": 1 },
+            { "id": "J5", "x": 6, "y": 1 },
+            { "id": "J6", "x": 3, "y": 2 }
+          ],
+          "arestas": [
+            { "de": 3, "para": "J1" },
+            { "de": "J1", "para": 7 },
+            { "de": 7, "para": "J3" },
+            { "de": "J3", "para": 51 },
+            { "de": 93, "para": "J6" },
+            { "de": "J6", "para": 51 },
+            { "de": 51, "para": "J4" },
+            { "de": "J4", "para": 11 },
+            { "de": 11, "para": "J5" },
+            { "de": "J5", "para": 12 },
+            { "de": "J1", "para": 68, "erro": true },
+            { "de": "J3", "para": 93, "erro": true },
+            { "de": "J6", "para": 70, "erro": true },
+            { "de": "J4", "para": 71, "erro": true },
+            { "de": "J5", "para": 74, "erro": true }
+          ]
+        }
+      }
+    },
+    {
+      "moduleId": "base/flow-viewer",
+      "instanceId": "inventarios",
+      "config": {
+        "fonte": "atlas",
+        "fluId": 9,
+        "visualStyle": "flat-orthogonal",
+        "faseFinal": 12,
+        "lotesIgnorados": ["teste"],
+        "kpiFases": [3, 7, 12],
+        "macroView": { "fasId": 3 },
+        "fases": [
+          { "fasId": 3, "nome": "Digitalização (Scanner)", "tipo": "entrada" },
+          { "fasId": 102, "nome": "Suspenso Digitalização", "tipo": "erro" },
+          { "fasId": 7, "nome": "Controle de Qualidade", "tipo": "processo" },
+          { "fasId": 93, "nome": "CQ 2", "tipo": "reprocessamento" },
+          { "fasId": 70, "nome": "Suspenso CQ", "tipo": "erro" },
+          { "fasId": 51, "nome": "Indexação Automática", "tipo": "processo" },
+          { "fasId": 71, "nome": "Suspenso Indexação Automática", "tipo": "erro" },
+          { "fasId": 1, "nome": "Validação", "tipo": "processo" },
+          { "fasId": 16, "nome": "Verificação", "tipo": "processo" },
+          { "fasId": 11, "nome": "Exportação", "tipo": "processo" },
+          { "fasId": 74, "nome": "Suspenso Exportação", "tipo": "erro" },
+          { "fasId": 12, "nome": "Finalizado", "tipo": "terminal" },
+          { "fasId": 120, "nome": "Aguardando Indexação", "tipo": "espera" }
+        ],
+        "apresentacao": {
+          "nome": "Inventários",
+          "sub": "Papel · Digitalização",
+          "grupo": { "id": "papel", "nome": "Papel" },
+          "aValidar": true,
+          "passo": { "cw": 200, "ch": 130, "nw": 164, "nh": 92 }
+        },
+        "gestaoColunas": [
+          { "fasId": 3, "titulo": "Digitalização (Scanner)" },
+          { "fasId": 7, "titulo": "Controle de Qualidade" },
+          { "fasId": 12, "titulo": "Finalizado" }
+        ],
+        "grafo": {
+          "nos": [
+            { "fasId": 3, "x": 0, "y": 0 },
+            { "fasId": 16, "x": 5, "y": 0 },
+            { "fasId": 7, "x": 1, "y": 1 },
+            { "fasId": 51, "x": 3, "y": 1 },
+            { "fasId": 1, "x": 5, "y": 1 },
+            { "fasId": 11, "x": 7, "y": 1 },
+            { "fasId": 12, "x": 9, "y": 1 },
+            { "fasId": 102, "x": 0, "y": 2 },
+            { "fasId": 93, "x": 2, "y": 2 },
+            { "fasId": 71, "x": 4, "y": 2 },
+            { "fasId": 74, "x": 8, "y": 2 },
+            { "fasId": 70, "x": 3, "y": 3 },
+            { "fasId": 120, "x": 9, "y": 3 }
+          ],
+          "juncoes": [
+            { "id": "J1", "x": 0, "y": 1 },
+            { "id": "J3", "x": 2, "y": 1 },
+            { "id": "J4", "x": 4, "y": 1 },
+            { "id": "J5", "x": 8, "y": 1 },
+            { "id": "J6", "x": 3, "y": 2 }
+          ],
+          "arestas": [
+            { "de": 3, "para": "J1" },
+            { "de": "J1", "para": 7 },
+            { "de": 7, "para": "J3" },
+            { "de": "J3", "para": 51 },
+            { "de": 93, "para": "J6" },
+            { "de": "J6", "para": 51 },
+            { "de": 51, "para": "J4" },
+            { "de": "J4", "para": 1 },
+            { "de": 1, "para": 11 },
+            { "de": 1, "para": 16, "bidirecional": true },
+            { "de": 11, "para": "J5" },
+            { "de": "J5", "para": 12 },
+            { "de": "J1", "para": 102, "erro": true },
+            { "de": "J3", "para": 93, "erro": true },
+            { "de": "J6", "para": 70, "erro": true },
+            { "de": "J4", "para": 71, "erro": true },
+            { "de": "J5", "para": 74, "erro": true }
+          ]
+        }
+      }
+    },
+    {
+      "moduleId": "base/flow-viewer",
+      "instanceId": "cartografia",
+      "config": {
+        "fonte": "atlas",
+        "fluId": 10,
+        "visualStyle": "flat-orthogonal",
+        "faseFinal": 12,
+        "lotesIgnorados": ["teste"],
+        "kpiFases": [3, 7, 12],
+        "macroView": { "fasId": 3 },
+        "fases": [
+          { "fasId": 3, "nome": "Digitalização (Scanner)", "tipo": "entrada" },
+          { "fasId": 102, "nome": "Suspenso Digitalização", "tipo": "erro" },
+          { "fasId": 7, "nome": "Controle de Qualidade", "tipo": "processo" },
+          { "fasId": 93, "nome": "CQ 2", "tipo": "reprocessamento" },
+          { "fasId": 70, "nome": "Suspenso CQ", "tipo": "erro" },
+          { "fasId": 51, "nome": "Indexação Automática", "tipo": "processo" },
+          { "fasId": 71, "nome": "Suspenso Indexação Automática", "tipo": "erro" },
+          { "fasId": 1, "nome": "Validação", "tipo": "processo" },
+          { "fasId": 16, "nome": "Verificação", "tipo": "processo" },
+          { "fasId": 11, "nome": "Exportação", "tipo": "processo" },
+          { "fasId": 74, "nome": "Suspenso Exportação", "tipo": "erro" },
+          { "fasId": 12, "nome": "Finalizado", "tipo": "terminal" }
+        ],
+        "apresentacao": {
+          "nome": "Cartografia",
+          "sub": "Papel · Digitalização",
+          "grupo": { "id": "papel", "nome": "Papel" },
+          "aValidar": false,
+          "passo": { "cw": 200, "ch": 130, "nw": 164, "nh": 92 }
+        },
+        "gestaoColunas": [
+          { "fasId": 3, "titulo": "Digitalização (Scanner)" },
+          { "fasId": 7, "titulo": "Controle de Qualidade" },
+          { "fasId": 12, "titulo": "Finalizado" }
+        ],
+        "grafo": {
+          "nos": [
+            { "fasId": 3, "x": 0, "y": 0 },
+            { "fasId": 16, "x": 5, "y": 0 },
+            { "fasId": 7, "x": 1, "y": 1 },
+            { "fasId": 51, "x": 3, "y": 1 },
+            { "fasId": 1, "x": 5, "y": 1 },
+            { "fasId": 11, "x": 7, "y": 1 },
+            { "fasId": 12, "x": 9, "y": 1 },
+            { "fasId": 102, "x": 0, "y": 2 },
+            { "fasId": 93, "x": 2, "y": 2 },
+            { "fasId": 71, "x": 4, "y": 2 },
+            { "fasId": 74, "x": 8, "y": 2 },
+            { "fasId": 70, "x": 3, "y": 3 }
+          ],
+          "juncoes": [
+            { "id": "J1", "x": 0, "y": 1 },
+            { "id": "J3", "x": 2, "y": 1 },
+            { "id": "J4", "x": 4, "y": 1 },
+            { "id": "J5", "x": 8, "y": 1 },
+            { "id": "J6", "x": 3, "y": 2 }
+          ],
+          "arestas": [
+            { "de": 3, "para": "J1" },
+            { "de": "J1", "para": 7 },
+            { "de": 7, "para": "J3" },
+            { "de": "J3", "para": 51 },
+            { "de": 93, "para": "J6" },
+            { "de": "J6", "para": 51 },
+            { "de": 51, "para": "J4" },
+            { "de": "J4", "para": 1 },
+            { "de": 1, "para": 11 },
+            { "de": 1, "para": 16, "bidirecional": true },
+            { "de": 11, "para": "J5" },
+            { "de": "J5", "para": 12 },
+            { "de": "J1", "para": 102, "erro": true },
+            { "de": "J3", "para": 93, "erro": true },
+            { "de": "J6", "para": 70, "erro": true },
+            { "de": "J4", "para": 71, "erro": true },
+            { "de": "J5", "para": 74, "erro": true }
+          ]
+        }
+      }
+    }
+  ]
+}

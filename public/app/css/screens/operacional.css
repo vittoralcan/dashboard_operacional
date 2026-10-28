@@ -1,0 +1,104 @@
+/* Design operacional — tablet (higienização/remontagem) e digitalização. Base Noir Bento (só tokens):
+   botões grandes com ícone, selos com ícone e texto (cor nunca sozinha), um destaque por tela. */
+.op-tela { max-width: 1180px; margin: 0 auto; padding: 16px 24px 40px; display: flex; flex-direction: column; gap: 16px; overflow-x: hidden; }
+
+.op-topo { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+.op-marca { display: flex; align-items: center; gap: 12px; min-width: 0; flex: 1 1 auto; }
+.op-turno { margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -.01em; overflow-wrap: anywhere; }
+.op-nav { display: flex; gap: 6px; padding: 4px; background: var(--surface); border: 1px solid var(--border-2); border-radius: var(--r-lg); }
+.op-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: var(--r-md); font-size: 16px; font-weight: 500; color: var(--fg-2); text-decoration: none; }
+.op-link:hover { background: var(--hover); color: var(--fg); }
+.op-link[aria-current="page"] { background: var(--accent-soft); color: var(--accent-text); box-shadow: inset 0 0 0 1px var(--accent-ring); }
+.op-link:focus-visible, .op-btn:focus-visible, .op-toggle:focus-visible { outline: 3px solid var(--accent-ring); outline-offset: 2px; }
+.op-link .ic, .op-btn .ic, .op-toggle .ic, .op-chip .ic { flex: none; }
+
+/* Botões */
+.op-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 60px; padding: 0 24px; font: inherit; font-size: 19px; font-weight: 600; color: var(--fg); background: var(--surface-2); border: 1px solid var(--border-3); border-radius: var(--r-lg); box-shadow: var(--inset-hi); cursor: pointer; touch-action: manipulation; transition: background var(--d1), transform var(--d1), border-color var(--d1); }
+.op-btn:hover { background: var(--surface-3); }
+.op-btn:active { transform: translateY(1px); }
+.op-btn .ic { font-size: 24px; }
+.op-btn.primary { color: var(--on-accent); background: var(--accent-grad); border-color: transparent; box-shadow: none; }
+.op-btn.primary:hover { filter: brightness(1.08); background: var(--accent-grad); }
+.op-btn.ok { color: var(--ok); background: var(--ok-soft); border-color: var(--ok); }
+.op-btn.warn { color: var(--warn); background: var(--warn-soft); border-color: var(--warn); }
+.op-btn.quiet { min-height: 48px; font-size: 16px; font-weight: 500; color: var(--fg-2); background: transparent; box-shadow: none; }
+.op-btn.sm { min-height: 48px; padding: 0 18px; font-size: 17px; }
+.op-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+/* Selos: sempre ícone + texto */
+.op-chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: var(--r-full); font-size: 14px; font-weight: 600; color: var(--fg-2); background: var(--surface-2); border: 1px solid var(--border-2); white-space: nowrap; }
+.op-chip.accent { color: var(--accent-text); background: var(--accent-soft); border-color: var(--accent-ring); }
+.op-chip.ok { color: var(--ok); background: var(--ok-soft); border-color: transparent; }
+.op-chip.warn { color: var(--warn); background: var(--warn-soft); border-color: transparent; }
+.op-chip.err { color: var(--err); background: var(--err-soft); border-color: transparent; }
+.op-chip .ic { font-size: 16px; }
+
+/* Cartões */
+.op-card { background: var(--surface); background-image: var(--card-sheen); border: 1px solid var(--border-2); border-radius: var(--r-xl); box-shadow: var(--inset-hi), var(--card-shadow); padding: 20px; }
+.op-sub { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; font-size: 14px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--fg-3); }
+.op-sub .ic { font-size: 18px; }
+
+/* Retorno: confirmação grande depois de cada ação (iniciar, pausar, concluir) */
+.op-retorno { display: flex; align-items: center; gap: 18px; padding: 18px 22px; border-radius: var(--r-xl); border: 1px solid transparent; animation: op-entra var(--d3) var(--ease); }
+.op-retorno[hidden] { display: none; }
+.op-retorno .ic { font-size: 44px; flex: none; }
+.op-retorno-txt { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1 1 auto; }
+.op-retorno-tit { font-size: 28px; font-weight: 700; line-height: 1.15; }
+.op-retorno-lin { font-size: 18px; color: var(--fg-2); overflow-wrap: anywhere; }
+.op-retorno-lin:first-of-type { font-family: var(--mono); font-size: 20px; color: var(--fg); }
+.op-retorno.ok { background: var(--ok-soft); border-color: var(--ok); color: var(--ok); }
+.op-retorno.warn { background: var(--warn-soft); border-color: var(--warn); color: var(--warn); }
+.op-retorno.err { background: var(--err-soft); border-color: var(--err); color: var(--err); }
+.op-retorno.info { background: var(--accent-soft); border-color: var(--accent-ring); color: var(--accent-text); }
+@keyframes op-entra { from { opacity: 0; transform: translateY(-8px) scale(.98); } to { opacity: 1; transform: none; } }
+
+/* Campo de bip */
+.op-bip { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.op-rot { display: flex; align-items: center; gap: 8px; font-size: 17px; color: var(--fg-2); }
+.op-campo { width: 100%; box-sizing: border-box; min-height: 64px; padding: 0 18px; font: inherit; font-family: var(--mono); font-size: 28px; color: var(--fg); background: var(--bg-elev); border: 2px solid var(--accent); border-radius: var(--r-lg); }
+.op-campo:focus { outline: none; box-shadow: 0 0 0 4px var(--accent-soft); }
+.op-campo:disabled { opacity: .5; border-color: var(--border-3); }
+
+/* Alternativas (segmentado) */
+.op-seg { display: flex; gap: 6px; padding: 4px; background: var(--bg-elev); border: 1px solid var(--border-2); border-radius: var(--r-lg); }
+.op-seg .op-btn { flex: 1 1 0; min-height: 56px; font-size: 19px; background: transparent; border-color: transparent; box-shadow: none; color: var(--fg-2); }
+.op-seg .op-btn[aria-pressed="true"] { color: var(--accent-text); background: var(--accent-soft); box-shadow: inset 0 0 0 1px var(--accent-ring); }
+
+/* Escolha de nome */
+.op-nomes { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
+.op-nome { justify-content: flex-start; min-height: 68px; font-size: 21px; text-align: left; overflow-wrap: anywhere; }
+.op-nome { flex-wrap: wrap; row-gap: 8px; padding-top: 12px; padding-bottom: 12px; }
+.op-nome-txt { flex: 1 1 120px; min-width: 0; overflow-wrap: anywhere; }
+.op-nome .op-chip { flex: 0 0 100%; justify-content: center; white-space: normal; }
+.op-nome:disabled { opacity: .75; }
+.op-nome::before { content: attr(data-inicial); display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: var(--r-full); background: var(--accent-soft); color: var(--accent-text); font-size: 18px; font-weight: 700; flex: none; }
+.op-inicial { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: var(--r-full); background: var(--accent-soft); color: var(--accent-text); font-size: 18px; font-weight: 700; flex: none; }
+
+/* Caixas em andamento */
+.op-lista { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px; }
+.op-caixa { display: flex; flex-direction: column; gap: 12px; padding: 16px 18px; background: var(--surface-2); border: 1px solid var(--border-2); border-radius: var(--r-lg); }
+.op-caixa.pausada { border-style: dashed; border-color: var(--warn); }
+.op-caixa.pendente { border-color: var(--err); background: var(--err-soft); }
+.op-caixa-topo { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.op-cod { font-family: var(--mono); font-size: 22px; font-weight: 600; overflow-wrap: anywhere; }
+.op-quem { display: flex; align-items: center; gap: 10px; font-size: 20px; color: var(--fg-2); overflow-wrap: anywhere; }
+.op-cron { font-family: var(--mono); font-size: 44px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; }
+.op-caixa.pausada .op-cron { color: var(--warn); }
+.op-caixa-base { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 8px 10px; }
+.op-caixa-base .op-chip { white-space: normal; }
+.op-vazio { margin: 0; padding: 28px 12px; text-align: center; font-size: 19px; color: var(--fg-3); }
+
+/* Marcas por caixa (digitalização): botões liga/desliga com ícone */
+.op-marcas { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.op-toggle { display: flex; align-items: center; gap: 14px; min-height: 76px; padding: 0 20px; font: inherit; font-size: 20px; font-weight: 600; color: var(--fg-2); text-align: left; background: var(--bg-elev); border: 2px dashed var(--border-3); border-radius: var(--r-lg); cursor: pointer; touch-action: manipulation; }
+.op-toggle .ic { font-size: 32px; }
+.op-toggle .op-toggle-est { margin-left: auto; font-size: 14px; font-weight: 600; }
+.op-toggle[aria-pressed="true"] { color: var(--warn); background: var(--warn-soft); border: 2px solid var(--warn); }
+
+@media (max-width: 720px) {
+  .op-tela { padding: 12px 14px 32px; }
+  .op-retorno-tit { font-size: 22px; }
+  .op-retorno .ic { font-size: 36px; }
+  .op-lista { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { .op-retorno { animation: none; } }

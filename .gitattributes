@@ -1,0 +1,8 @@
+# Bibliotecas de terceiros e fontes: nunca converter fim de linha (o SRI do vendor/ é conferido por teste)
+public/app/vendor/** -text
+public/app/assets/fonts/** binary
+
+# Scripts e unidades da VM Linux: sempre LF
+*.sh text eol=lf
+*.service text eol=lf
+*.timer text eol=lf

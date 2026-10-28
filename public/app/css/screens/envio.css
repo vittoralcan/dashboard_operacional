@@ -1,0 +1,32 @@
+/* Envio (Bridge) — #/envio. Só tokens; reaproveita bento, card, hbar (aips.css), seg, selo e tabela. */
+.envio-barra { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 14px; margin: 4px 0 18px; }
+.envio-barra .field { margin: 0; min-width: 0; }
+.envio-barra .field:first-child { flex: 1 1 260px; max-width: 380px; }
+.envio-barra .btn { align-self: flex-end; }
+
+.envio-sinal { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; margin-bottom: 16px; border-radius: var(--r); font-size: 13px; line-height: 1.45; border: 1px solid transparent; }
+.envio-sinal .ic { font-size: 18px; flex: none; margin-top: 1px; }
+.envio-sinal.ok { background: var(--ok-soft); color: var(--ok); border-color: color-mix(in srgb, var(--ok) 25%, transparent); }
+.envio-sinal.warn { background: var(--warn-soft); color: var(--warn); border-color: color-mix(in srgb, var(--warn) 30%, transparent); }
+.envio-sinal.info { background: var(--info-soft); color: var(--info); border-color: color-mix(in srgb, var(--info) 25%, transparent); }
+
+.anel-linha { display: flex; align-items: center; gap: 14px; }
+.anel-linha .unit { flex: 1; min-width: 0; }
+
+/* funil: etapa (selo) · barra · total */
+.hbar.funil { grid-template-columns: 96px 1fr 52px; height: 28px; }
+.hbar.funil .selo { justify-self: start; }
+
+/* alerta que exige ação (mensagem "[ALERTA] …"): texto quebra em linhas em vez de esticar a tabela */
+.tbl td:has(> .envio-detalhe) { padding-block: 8px; white-space: normal; min-width: 240px; max-width: 460px; }
+.envio-detalhe { display: block; line-height: 1.4; color: var(--fg); overflow-wrap: anywhere; }
+
+.chart-box { min-height: 170px; }
+.envio-barra + #conteudo > .envio-sinal + .bento { margin-top: 0; }
+/* cartões e funil/vazão são dois .bento irmãos: sem isto as bordas se encostam */
+#conteudo > .bento + .bento { margin-top: 12px; }
+
+@media (max-width: 720px) {
+  .envio-barra .field:first-child { flex-basis: 100%; max-width: none; }
+  .hbar.funil { grid-template-columns: 84px 1fr 44px; }
+}

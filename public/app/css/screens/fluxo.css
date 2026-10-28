@@ -1,0 +1,132 @@
+/* ==========================================================================
+   FLUXOGRAMA — canvas com pan/zoom, nós, HUD e minimapa (design_system.md §11, FLX-05…11)
+   ========================================================================== */
+.flow {
+  position: relative; height: clamp(460px, calc(100vh - 300px), 860px); overflow: hidden; border-radius: var(--r-xl);
+  border: 1px solid var(--border); background-color: var(--surface);
+  background-image: radial-gradient(var(--dot-strong) 1px, transparent 1.3px); background-size: 22px 22px;
+  cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none;
+}
+.flow.dragging { cursor: grabbing; }
+.flow-world { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform; }
+.flow-edges { position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none; }
+.edge { fill: none; stroke: var(--edge); stroke-width: 1.4; }
+.edge.red { stroke: var(--err); stroke-opacity: .7; stroke-dasharray: 5 4; }
+.edge-flow { fill: none; stroke: var(--accent-hi); stroke-width: 1.6; stroke-dasharray: 2 16; stroke-linecap: round; opacity: .55; animation: dash 1.4s linear infinite; }
+.arrow-n { fill: var(--edge); }
+.arrow-r { fill: var(--err); fill-opacity: .8; }
+
+.fnode {
+  position: absolute; display: flex; flex-direction: column; gap: 7px; padding: 9px 10px 9px 11px; cursor: pointer;
+  background: var(--node-bg); border: 1px solid var(--border-3); border-radius: 10px; box-shadow: var(--node-shadow);
+  transition: border-color var(--d2), box-shadow var(--d2), transform var(--d2) var(--ease);
+  animation: node-in .5s var(--ease) backwards; animation-delay: calc(var(--i, 0) * 35ms);
+}
+.fnode:hover { border-color: var(--fg-3); transform: translateY(-1px); }
+.fn-l { font: 600 10.5px/1.25 var(--font); letter-spacing: .035em; text-transform: uppercase; color: var(--fg); padding-right: 22px; min-height: 26px; display: flex; align-items: flex-start; gap: 6px; }
+.fn-l .n { font-family: var(--mono); font-weight: 500; color: var(--fg-3); }
+.fn-plus { position: absolute; top: 6px; right: 6px; width: 22px; height: 22px; border-radius: 6px; display: grid; place-items: center; color: var(--fg-2); border: 1px solid var(--border-3); background: var(--surface); transition: background var(--d2), color var(--d2); }
+.fn-plus .ic { font-size: 12px; }
+.fnode:hover .fn-plus, .fnode:focus-visible .fn-plus { color: var(--on-accent); background: var(--accent-solid); border-color: transparent; }
+.fn-m { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.fn-m > div { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.fn-m span { font: 500 8.5px var(--mono); letter-spacing: .08em; color: var(--fg-3); }
+.fn-m b { font: 600 12.5px var(--mono); font-variant-numeric: tabular-nums; color: var(--fg); }
+.fn-m.one { grid-template-columns: 1fr; }
+.fn-m.one b { font-size: 16px; }
+.fn-load { height: 3px; border-radius: 3px; background: var(--surface-3); overflow: hidden; }
+.fn-load i { display: block; height: 100%; width: 0; border-radius: inherit; background: var(--fg-2); transition: width 1s var(--ease); }
+.fnode.err { background: color-mix(in srgb, var(--err) 6%, var(--node-bg)); border-color: color-mix(in srgb, var(--err) 34%, var(--border-2)); }
+.fnode.err .fn-l { color: var(--err); }
+.fnode.err .fn-load i { background: var(--err); }
+.fnode.wait { border-style: dashed; border-color: color-mix(in srgb, var(--warn) 60%, transparent); background: color-mix(in srgb, var(--warn) 6%, var(--node-bg)); }
+.fnode.wait .fn-l { color: var(--warn); }
+.fnode.wait .fn-load i { background: var(--warn); }
+.fnode.err .fn-m span, .fnode.wait .fn-m span { color: var(--fg-2); } /* fundo tingido: --fg-3 ficava em 4,44:1 */
+.fnode.final { border-color: color-mix(in srgb, var(--ok) 45%, var(--border-2)); }
+.fnode.final .fn-load i { background: var(--ok); }
+.fnode.gargalo { border-color: var(--accent); animation: node-in .5s var(--ease) backwards, gpulse 2.4s ease-in-out .6s infinite; }
+.fnode.gargalo .fn-load i { background: var(--accent); }
+.fnode.alto-volume { border-color: var(--warn); }
+.fnode.alto-volume .fn-load i { background: var(--warn); }
+.fnode.alto-volume .fn-tag { background: var(--warn); box-shadow: 0 4px 12px -2px var(--warn-soft); }
+.fnode.focus { box-shadow: 0 0 0 4px var(--accent-soft), 0 0 0 1px var(--accent); border-color: var(--accent); }
+.fn-tag { position: absolute; left: 10px; top: -9px; height: 17px; padding: 0 7px; border-radius: 5px; background: var(--accent-solid); color: var(--on-accent); font: 600 9px/17px var(--mono); letter-spacing: .08em; text-transform: uppercase; box-shadow: 0 4px 12px -2px var(--accent-glow); }
+.fjunc { position: absolute; width: 22px; height: 22px; transform: rotate(45deg); border-radius: 4px; border: 1px solid var(--fg-3); background: var(--surface-3); animation: fade .5s var(--ease) both; }
+
+/* HUD flutuante */
+.flow-hud { position: absolute; z-index: 4; display: flex; gap: 8px; pointer-events: none; }
+.flow-hud > * { pointer-events: auto; }
+.hud-box { background: color-mix(in srgb, var(--surface) 86%, transparent); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border: 1px solid var(--border-2); border-radius: var(--r-lg); box-shadow: var(--shadow-md); }
+.hud-tl { left: 12px; top: 12px; flex-wrap: wrap; max-width: calc(100% - 24px); }
+.hud-counter { display: grid; grid-template-columns: auto auto; gap: 1px; overflow: hidden; }
+.hud-counter > div { padding: 9px 14px; display: flex; flex-direction: column; gap: 3px; min-width: 128px; }
+.hud-counter > div + div { border-left: 1px solid var(--border-2); }
+.hud-counter .k { font: 500 9.5px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--fg-3); }
+.hud-counter .v { font: 600 18px/1 var(--mono); font-variant-numeric: tabular-nums; }
+.hud-counter.wait .k { color: var(--warn); }
+.hud-tr { right: 12px; top: 12px; }
+.legend { display: flex; gap: 12px; padding: 7px 12px; font-size: 11.5px; color: var(--fg-2); flex-wrap: wrap; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.legend i { width: 10px; height: 10px; border-radius: 3px; border: 1px solid var(--fg-3); background: var(--surface-2); }
+.legend i.g { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
+.legend i.v { border-color: var(--warn); background: var(--warn-soft); }
+.legend i.r { border-color: var(--err); background: var(--err-soft); }
+.legend i.w { border-color: var(--warn); border-style: dashed; background: var(--warn-soft); }
+.legend i.f { border-color: var(--ok); }
+.hud-bl { left: 12px; bottom: 12px; align-items: center; }
+.zoom-ctl { display: flex; align-items: center; padding: 3px; gap: 2px; }
+.zoom-ctl .icon-btn { width: 28px; height: 28px; }
+.zoom-ctl .pct { min-width: 50px; text-align: center; font: 500 11.5px var(--mono); color: var(--fg-2); }
+.zoom-ctl .sep { width: 1px; height: 18px; background: var(--border-2); margin: 0 2px; }
+.hud-br { right: 12px; bottom: 12px; }
+.minimap { width: 196px; height: 112px; padding: 6px; cursor: pointer; position: relative; }
+.minimap svg { width: 100%; height: 100%; display: block; }
+.minimap .mm-n { fill: var(--fg-4); }
+.minimap .mm-n.err { fill: var(--err); opacity: .7; }
+.minimap .mm-n.wait { fill: var(--warn); opacity: .8; }
+.minimap .mm-n.g { fill: var(--accent); }
+.minimap .mm-n.f { fill: var(--ok); opacity: .8; }
+.minimap .mm-v { fill: var(--accent-softer); stroke: var(--accent); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+
+@media (max-width: 1180px) { .hud-tl { flex-direction: column; } }
+@media (max-width: 760px) {
+  .minimap { width: 140px; height: 84px; }
+  .flow { height: clamp(380px, calc(100vh - 260px), 700px); }
+  .hud-tr { top: auto; bottom: 64px; right: 12px; }
+  .hud-tl { gap: 4px; }
+  .hud-counter > div { min-width: 0; padding: 5px 8px; gap: 2px; }
+  .hud-counter .k { font-size: 8.5px; letter-spacing: .05em; }
+  .hud-counter .v { font-size: 14px; }
+}
+
+/* ---------- Módulo de fluxo Captura (análise de produção e cabeçalho) ---------- */
+.sync { font: 11.5px var(--mono); color: var(--fg-3); padding: 4px 9px; border-radius: var(--r-sm); border: 1px solid var(--border); white-space: nowrap; }
+.sync.atrasado { color: var(--warn); background: var(--warn-soft); border-color: transparent; }
+.est-bloco { display: flex; flex-direction: column; gap: 8px; }
+.est-lista { display: flex; flex-direction: column; gap: 6px; max-height: 140px; overflow-y: auto; padding-right: 4px; }
+.est-lista:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.est-i { display: grid; grid-template-columns: minmax(0, 96px) 1fr auto; gap: 10px; align-items: center; font-size: 12px; }
+.est-i .mono { color: var(--fg-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.est-i .tr { height: 6px; border-radius: 3px; background: var(--surface-3); overflow: hidden; }
+.est-i .tr i { display: block; height: 100%; border-radius: inherit; background: var(--fg-3); }
+.est-i .r { font: 500 12px var(--mono); }
+.est-total { display: flex; justify-content: space-between; align-items: center; padding-top: 8px; border-top: 1px solid var(--border); }
+.est-total b { font-size: 13px; }
+/* Tipologia da produção do mês (projeto + lote) no cartão da fase */
+.tipo-bloco { display: flex; flex-direction: column; gap: 6px; }
+.tipo-lista { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.tipo-i { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 10px; align-items: baseline; font-size: 12px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+.tipo-n { color: var(--fg-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tipo-i .mono { white-space: nowrap; }
+.tipo-unico { margin: 0; font-size: 12px; color: var(--fg-3); }
+
+/* Cartão de meta mensal (FLX-02) */
+.meta-mensal { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; gap: 14px 28px; align-items: center; }
+.meta-mensal[hidden] { display: none; }
+.mm-anel { position: relative; width: 76px; height: 76px; display: grid; place-items: center; }
+.mm-anel .mono { position: absolute; inset: 0; display: grid; place-items: center; font-size: 15px; font-weight: 600; }
+.mm-corpo { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.mm-var { display: flex; align-items: center; gap: 8px; min-height: 22px; }
+.mm-stat { display: flex; flex-direction: column; gap: 4px; padding-left: 24px; border-left: 1px solid var(--border); min-width: 130px; }
+@container (max-width: 900px) { .meta-mensal { grid-template-columns: auto 1fr; } .mm-stat { border-left: 0; padding-left: 0; } }

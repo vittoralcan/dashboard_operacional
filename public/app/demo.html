@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="robots" content="noindex">
+  <title>Painel Operacional · Demonstração</title>
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <script src="js/csp-relato.js"></script>
+  <script src="js/anti-fouc.js"></script>
+  <link rel="preload" href="assets/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/GeistMono-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/overlays.css">
+  <link rel="stylesheet" href="css/shell.css">
+  <link rel="stylesheet" href="css/motion.css">
+  <link rel="stylesheet" href="css/screens/auth.css">
+  <link rel="stylesheet" href="css/screens/aips.css">
+  <link rel="stylesheet" href="css/screens/fluxo.css">
+  <link rel="stylesheet" href="css/screens/indexacao.css">
+  <link rel="stylesheet" href="css/screens/higienizacao.css">
+  <link rel="stylesheet" href="css/screens/rcx.css">
+  <link rel="stylesheet" href="css/screens/home.css">
+  <link rel="stylesheet" href="css/screens/macro.css">
+  <link rel="stylesheet" href="css/screens/envio.css">
+  <link rel="stylesheet" href="css/screens/operacional.css">
+  <link rel="stylesheet" href="css/screens/tablet.css">
+  <link rel="stylesheet" href="css/screens/digitalizacao.css">
+  <link rel="stylesheet" href="css/screens/relatorio-op.css">
+  <link rel="stylesheet" href="css/screens/cadastros-op.css">
+  <link rel="stylesheet" href="css/screens/caixas-op.css">
+  <link rel="stylesheet" href="css/screens/correcoes-op.css">
+  <link rel="stylesheet" href="demo/demo.css">
+</head>
+<body>
+  <noscript><p style="padding:24px;font:14px/1.5 system-ui,sans-serif">Este painel precisa de JavaScript para funcionar.</p></noscript>
+
+  <div id="topbar-progress" aria-hidden="true"><i></i></div>
+  <div id="wipe" aria-hidden="true"><div class="pane"></div></div>
+
+  <div id="auth" class="layer" hidden></div>
+  <!-- data-casca="pendente": barra lateral e topo chegam na Onda 2; até lá o conteúdo ocupa a tela toda. -->
+  <div id="shell" class="shell layer" data-casca="pendente" hidden>
+    <aside id="sidebar" class="sidebar" aria-label="Navegação principal"></aside>
+    <div class="sb-scrim" id="sbScrim"></div>
+    <div class="main">
+      <header class="topbar"></header>
+      <main id="view" class="view" tabindex="-1"></main>
+    </div>
+  </div>
+  <div id="macro" class="macro layer" hidden></div>
+  <div id="tablet" class="layer" hidden></div>
+
+  <div id="modais"></div>
+  <div id="toasts" aria-live="polite"></div>
+  <div id="tip" role="tooltip" aria-hidden="true"></div>
+  <div id="chordHint" aria-hidden="true"></div>
+
+  <!-- Modo demonstração: a API simulada (dados fictícios) é instalada antes do painel. -->
+  <script type="module" src="demo/instalar.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

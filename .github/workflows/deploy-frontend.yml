@@ -1,0 +1,43 @@
+name: Deploy do frontend (hospedagem estática via SFTP)
+
+on:
+  # No showcase o deploy é só manual (Actions > Run workflow) e depende dos segredos SSH_* do repositório.
+  # Em produção ele roda a cada push na main que mexe em public/**. O gate `verificar` vale nos dois casos.
+  workflow_dispatch: {}
+
+# Menor privilégio (OPS-05): o deploy só lê o repositório.
+permissions:
+  contents: read
+
+jobs:
+  # Só publica se o front passar nos testes (unitários, orçamentos, segurança estática, E2E e acessibilidade).
+  verificar:
+    uses: ./.github/workflows/verificar-frontend.yml
+
+  deploy:
+    needs: verificar
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+        
+      - name: Debug - diagnosticar conectividade SSH/SFTP
+        run: |
+          echo "--- TCP bruto ---"
+          timeout 10 bash -c "cat < /dev/null > /dev/tcp/${{ secrets.SSH_HOST }}/${{ secrets.SSH_PORT }}" && echo "TCP: conectou" || echo "TCP: falhou/recusado"
+          echo "--- Handshake SSH (sem autenticar) ---"
+          timeout 10 ssh -vvv -o StrictHostKeyChecking=no -o ConnectTimeout=8 -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} exit 2>&1 | tail -40 || true
+        continue-on-error: true
+
+
+      - name: Deploy via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          username: ${{ secrets.SSH_USER }}
+          server: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          local_path: 'public/*'
+          remote_path: ${{ secrets.SSH_TARGET_PATH }}
+          sftp_only: true

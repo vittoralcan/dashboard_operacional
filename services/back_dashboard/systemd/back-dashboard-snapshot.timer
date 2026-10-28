@@ -1,0 +1,13 @@
+# Dispara back-dashboard-snapshot.service nas viradas de turno, 07h e 19h de
+# São Paulo (RF-52). Persistent recupera uma virada perdida com a VM desligada.
+
+[Unit]
+Description=Agenda o retrato de fases na virada de turno
+
+[Timer]
+OnCalendar=*-*-* 07,19:00:00 America/Sao_Paulo
+Persistent=true
+AccuracySec=1min
+
+[Install]
+WantedBy=timers.target

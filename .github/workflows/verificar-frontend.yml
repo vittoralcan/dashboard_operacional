@@ -1,0 +1,75 @@
+name: Verificar frontend
+
+# Verificação do front Noir Bento (public/app). Roda em todo PR que mexe no front e ANTES do deploy (deploy-frontend.yml a chama).
+# Nada aqui depende de backend no ar: as APIs são simuladas por contrato (tests/e2e/mock-api.mjs).
+
+on:
+  pull_request:
+    paths:
+      - 'public/**'
+      - 'tests/**'
+      - 'scripts/app-*'
+      - '.github/workflows/verificar-frontend.yml'
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  unitarios:
+    name: Unitários e orçamentos
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Testes unitários (node --test, sem dependências)
+        run: node --test "tests/app/*.test.js"
+      - name: Orçamentos de desempenho (RNB-015)
+        run: |
+          echo '### Orçamentos de desempenho' >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          node scripts/app-orcamentos.mjs | tee -a "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+
+  seguranca:
+    name: Segurança estática
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      # innerHTML sem html``, handlers inline, eval/Function/document.write, CDN/terceiros, hexadecimal fora de tokens.css,
+      # CSP do .htaccess coerente com js/config.js (frontend_spec §10 e §12.4)
+      - name: Greps de segurança (estatico + liberacao)
+        run: node --test tests/app/estatico.test.js tests/app/liberacao.test.js
+
+  e2e:
+    name: E2E (Playwright + axe)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: tests/e2e/package-lock.json
+      - name: Instalar dependências
+        working-directory: tests/e2e
+        run: npm ci
+      - name: Instalar o Chromium
+        working-directory: tests/e2e
+        run: npx playwright install --with-deps chromium
+      - name: Rodar os testes (CSP do .htaccess em modo bloqueio)
+        working-directory: tests/e2e
+        run: npx playwright test
+      - name: Guardar o relatório se falhar
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-resultados
+          path: tests/e2e/test-results/
+          retention-days: 7

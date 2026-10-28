@@ -1,0 +1,13 @@
+# Dispara back-dashboard-retencao.service uma vez por dia às 03:00
+# (backend_spec.md §5 — horário de menor uso do painel).
+
+[Unit]
+Description=Agenda a retenção diária de dados de apoio do painel
+
+[Timer]
+OnCalendar=*-*-* 03:00:00
+Persistent=true
+AccuracySec=5min
+
+[Install]
+WantedBy=timers.target
